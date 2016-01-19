@@ -1,0 +1,28 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"Djaneiro",
+		"DocBlockr",
+		"Emmet",
+		"HTML-CSS-JS Prettify",
+		"Indent XML",
+		"jQuery",
+		"LineEndings",
+		"Package Control",
+		"PackageResourceViewer",
+		"Pretty JSON",
+		"Sass",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeLinter-flake8",
+		"SublimeLinter-jshint",
+		"SublimeLinter-php",
+		"TodoReview",
+		"WordCount"
+	]
+}

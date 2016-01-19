@@ -1,0 +1,27 @@
+#
+# ALIASES
+#
+
+alias whatismyip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+# ls
+alias ll="ls -l"
+alias la="ls -la"
+alias .="cd $OLDPWD"
+
+# virtual environments
+alias v='workon'
+alias v.quit='deactivate'
+alias v.mk='mkvirtualenv --python python3'
+alias v.rm='rmvirtualenv'
+alias v.cd='cdvirtualenv'
+alias v.ls='lssitepackages'
+
+# ssh aliases
+alias ssh.nciec='ssh -p 2222 nciec@site2'
+alias ssh.kk='ssh kkenney@site1'
+alias ssh.kf='ssh kf@site1'
+alias ssh.rosalee='ssh rosalee@site1'
+
+# resume a download automatically with curl
+alias curl.resume='curl -O -C -'

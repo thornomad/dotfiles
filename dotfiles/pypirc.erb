@@ -1,0 +1,14 @@
+[distutils]
+index-servers=
+    pypi
+    pypitest
+
+[pypi]
+repository = https://pypi.python.org/pypi
+username = <%= print("pypi username: "); STDOUT.flush; STDIN.gets.chomp %>
+password = <%= print("pypi password: "); STDOUT.flush; STDIN.gets.chomp %>
+
+[pypitest]
+repository = https://testpypi.python.org/pypi
+username = <%= print("pypitest username: "); STDOUT.flush; STDIN.gets.chomp %>
+password = <%= print("pypitest password: "); STDOUT.flush; STDIN.gets.chomp %>
