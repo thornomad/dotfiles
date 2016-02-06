@@ -15,7 +15,8 @@
 		"_build"
 	],
 	"font_face": "Source Code Pro",
-	"font_size": 16,
+	"font_size": 14,
+	"hide_minimap": true,
 	"highlight_line": true,
 	"ignored_packages":
 	[

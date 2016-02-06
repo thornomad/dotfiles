@@ -18,9 +18,13 @@ Then link the sublime settings for the mac:
 Brew setup:
 -----------
 
-    # install homebrew 
+    # install homebrew
     # brew tap Homebrew/bundle  # add the repo
     # brew bundle               # run this in the dotfiles folder
 
 
 
+### Mac settings:
+
+    # disable auto-backup of itunes devices
+    defaults write com.apple.iTunes DeviceBackupsDisabled -bool true

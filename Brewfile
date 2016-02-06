@@ -9,7 +9,7 @@ cask 'java' unless system '/usr/libexec/java_home --failfast'
 brew 'automake'
 brew 'dnsmasq'
 brew 'elasticsearch'
-brew 'ffmpeg', args: ['with-faac', 'with-libass']
+brew 'ffmpeg', args: ['with-fdk-aac' 'with-faac', 'with-libass']
 brew 'gawk'
 brew 'git'
 brew 'libdvdcss'
