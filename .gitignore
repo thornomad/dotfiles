@@ -2,3 +2,7 @@
 dotfiles.sublime-project
 dotfiles.sublime-workspace
 sublime-settings.sublime-workspace
+
+# fish stuff
+/dotfiles/config/fish/fish_history
+/dotfiles/config/fish/fishd.*
