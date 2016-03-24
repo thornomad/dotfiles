@@ -28,3 +28,8 @@ Brew setup:
 
     # disable auto-backup of itunes devices
     defaults write com.apple.iTunes DeviceBackupsDisabled -bool true
+
+### Web stuff:
+
+    npm install -g browser-sync
+
