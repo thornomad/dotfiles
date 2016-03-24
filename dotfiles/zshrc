@@ -77,3 +77,6 @@ source $HOME/.aliases
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Documents
 source /usr/local/bin/virtualenvwrapper.sh
+
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
