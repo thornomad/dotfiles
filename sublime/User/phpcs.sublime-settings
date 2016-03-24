@@ -1,0 +1,7 @@
+{     // Path to where you have the phpcbf installed
+    "phpcbf_executable_path": "/usr/local/bin/phpcbf",
+    "phpcs_additional_args": {
+        "--standard": "WordPress",
+        "-n": ""
+    },
+}

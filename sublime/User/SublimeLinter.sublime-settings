@@ -24,10 +24,11 @@
                 "args": [],
                 "excludes": []
             },
-            "php": {
-                "@disable": false,
+            "phpcs": {
+                "@disable": true,
                 "args": [],
-                "excludes": []
+                "excludes": [],
+                "standard": "Wordpress"
             }
         },
         "mark_style": "outline",
@@ -52,7 +53,7 @@
             "html (rails)": "html",
             "html 5": "html",
             "javascript (babel)": "javascript",
-            "php": "html",
+            "php": "phpcs",
             "python django": "python"
         },
         "warning_color": "DDB700",

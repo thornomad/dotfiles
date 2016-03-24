@@ -8,12 +8,14 @@
 		"Djaneiro",
 		"DocBlockr",
 		"Emmet",
+		"GitGutter",
 		"HTML-CSS-JS Prettify",
 		"Indent XML",
 		"jQuery",
 		"LineEndings",
 		"Package Control",
 		"PackageResourceViewer",
+		"Phpcs",
 		"Pretty JSON",
 		"Sass",
 		"SideBarEnhancements",
@@ -21,7 +23,7 @@
 		"SublimeLinter",
 		"SublimeLinter-flake8",
 		"SublimeLinter-jshint",
-		"SublimeLinter-php",
+		"SublimeLinter-phpcs",
 		"TodoReview",
 		"WordCount"
 	]
