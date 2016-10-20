@@ -22,8 +22,6 @@ Brew setup:
     # brew tap Homebrew/bundle  # add the repo
     # brew bundle               # run this in the dotfiles folder
 
-
-
 ### Mac settings:
 
     # disable auto-backup of itunes devices
@@ -31,5 +29,4 @@ Brew setup:
 
 ### Web stuff:
 
-    npm install -g browser-sync
-
+    npm install -g browser-sync jsonlint eslint

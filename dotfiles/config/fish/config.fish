@@ -1,5 +1,8 @@
 source ~/.config/fish/aliases.fish
 
+# virtualenvwrapper / virtualfish
+eval (python -m virtualfish compat_aliases)
+
 # Fish git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate 'yes'
@@ -28,6 +31,10 @@ function fish_prompt
   printf '%s ' (__fish_git_prompt)
 
   set_color normal
+
+  if set -q VIRTUAL_ENV
+    echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+  end
 end
 
 source /usr/local/share/chruby/chruby.fish

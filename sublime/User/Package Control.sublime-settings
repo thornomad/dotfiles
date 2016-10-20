@@ -5,6 +5,7 @@
 	],
 	"installed_packages":
 	[
+		"Better CoffeeScript",
 		"Djaneiro",
 		"DocBlockr",
 		"Emmet",
@@ -12,18 +13,22 @@
 		"HTML-CSS-JS Prettify",
 		"Indent XML",
 		"jQuery",
+		"LESS",
 		"LineEndings",
+		"Minifier",
 		"Package Control",
 		"PackageResourceViewer",
 		"Phpcs",
 		"Pretty JSON",
 		"Sass",
 		"SideBarEnhancements",
+		"SqlBeautifier",
 		"SublimeCodeIntel",
 		"SublimeLinter",
 		"SublimeLinter-flake8",
 		"SublimeLinter-jshint",
 		"SublimeLinter-phpcs",
+		"SublimeLinter-ruby",
 		"TodoReview",
 		"WordCount"
 	]

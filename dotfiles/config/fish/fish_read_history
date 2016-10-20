@@ -1,0 +1,6 @@
+- cmd: function fish_prompt\nset last_status $status\n\nset_color $fish_color_cwd\nprintf '%s' (prompt_pwd)\nset_color normal\n\nprintf '%s ' (__fish_git_prompt)\n\nset_color normal\nend
+  when: 1462461420
+- cmd: function fish_prompt\nset last_status $status\n\nset_color $fish_color_cwd\nprintf '%s' (prompt_pwd)\nset_color normal\n\nprintf '%s ' (__fish_git_prompt)\n\nset_color normal\nend
+  when: 1462461677
+- cmd: function fish_prompt\nset last_status $status\n\nset_color $fish_color_cwd\nprintf '%s' (prompt_pwd)\nset_color normal\n\nprintf '%s ' (__fish_git_prompt)\n\nset_color normal \nend
+  when: 1462461684

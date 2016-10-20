@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[for (var ${20:key} in ${1:obj}) {
+  if (${1:obj}.hasOwnProperty(${20:key})) {
+    ${100:${1:obj}[${20:key}];}$0
+  }
+}]]></content>
+    <tabTrigger>for</tabTrigger>
+    <scope>source.js</scope>
+    <description>for (key in obj) {}</description>
+</snippet>

@@ -1,0 +1,49 @@
+{
+  "env": {
+    "browser": true,
+    "jquery": true,
+    "qunit": true
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "no-console": [
+      "warn"
+    ],
+    "indent": [
+      "error",
+      2, {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "warn",
+      "double"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "eqeqeq": [
+      "error",
+      "always"
+    ],
+    "curly": [
+      "error"
+    ],
+    "no-multi-spaces": [
+      "error"
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "never"
+    ],
+    "block-spacing": [
+      "error",
+      "always"
+    ]
+  }
+}

@@ -15,11 +15,12 @@
 		"_build"
 	],
 	"font_face": "Source Code Pro",
-	"font_size": 14,
+	"font_size": 13,
 	"hide_minimap": true,
 	"highlight_line": true,
 	"ignored_packages":
 	[
+		"Phpcs"
 	],
 	"rulers":
 	[
