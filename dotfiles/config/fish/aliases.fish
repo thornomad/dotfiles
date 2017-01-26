@@ -15,7 +15,6 @@ alias seed_migrate='bundle exec rake seed:migrate'
 
 # linguabee
 alias lb.app 'chruby 2.3.0; and cd ~/Documents/linguabee/linguabee-app; and bundle exec rails server -p 3000'
-alias lb.api 'chruby 2.3.0; and cd ~/Documents/linguabee/linguabee-api; and bundle exec rails server -p 3001'
 alias lb.hive 'chruby 2.3.0; and cd ~/Documents/linguabee/linguabee-hive; and bundle exec rails server -p 3002'
 alias lb.reset.test 'psql linguabee_api_test -c "drop schema public cascade; create schema public;"; and bundle exec rake db:migrate RAILS_ENV=test; and bundle exec rake db:seed:base RAILS_ENV=test'
 alias lb.reset.develop 'psql linguabee_api_development -c "drop schema public cascade; create schema public;"'
@@ -46,11 +45,42 @@ alias v.ls 'lssitepackages'
 # fish aliases
 alias fish.reload 'source ~/.config/fish/config.fish'
 
-# $ lb.update_production "http://long-assed-url-to-db"
-function lb.update_production
-  curl -o latest.dump $argv[1]
-  psql linguabee_api_development -c "drop schema public cascade; create schema public;"
-  pg_restore --verbose --clean --no-acl --no-owner -h localhost -U damon -d linguabee_api_development latest.dump
+function lb.api
+
+  if test (count $argv) -ne 1
+    set -g db_name "linguabee_api_production"
+  else
+    set -g db_name "linguabee_api_$argv[1]"
+  end
+  # set env variable for database.yml
+  set -g -x FLIP_TABLE $db_name
+  echo "USING DATABASE: $db_name"
+  chruby 2.3.0; and cd ~/Documents/linguabee/linguabee-api; and bundle exec rails server -p 3001
+end
+
+
+# $ lb.update linguabee_api_invoices "http://long-assed-url-to-db"
+function lb.update_db
+  if test (count $argv) -eq 2
+    set -g db_name "linguabee_api_$argv[1]"
+    set -g url $argv[2]
+  else if test (count $argv) -eq 1
+    set -g db_name "linguabee_api_production"
+    set -g url $argv[1]
+
+  else
+    echo lb.update_db: Expected at least one argument, the url
+    return 1
+
+  end
+
+  echo "lb.update_db: running DB: $db_name"
+  echo "lb.update_db: running url: $url"
+
+  set -g -x FLIP_TABLE $db_name
+  curl -o latest.dump $url
+  psql $db_name -c "drop schema public cascade; create schema public;"
+  pg_restore --verbose --clean --no-acl --no-owner -h localhost -U damon -d $db_name latest.dump
   bundle exec rake db:mask_emails
 end
 
