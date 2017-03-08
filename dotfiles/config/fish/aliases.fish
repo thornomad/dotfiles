@@ -1,8 +1,10 @@
 # ssh aliases
-alias ssh.nciec 'ssh -p 2222 nciec@site2'
+alias ssh.nciec_old 'ssh -p 2222 nciec@site2'
 alias ssh.kk 'ssh kkenney@site1'
 alias ssh.kf 'ssh kf@site1'
 alias ssh.rosalee 'ssh rosalee@site1'
+alias ssh.nciec 'ssh nciec@site1'
+alias ssh.pai 'ssh pai@site1'
 
 # ruby
 alias chruby.lb 'chruby 2.3.0'
@@ -16,7 +18,9 @@ alias seed_migrate='bundle exec rake seed:migrate'
 # linguabee
 alias lb.app 'chruby 2.3.0; and cd ~/Documents/linguabee/linguabee-app; and bundle exec rails server -p 3000'
 alias lb.hive 'chruby 2.3.0; and cd ~/Documents/linguabee/linguabee-hive; and bundle exec rails server -p 3002'
-alias lb.reset.test 'psql linguabee_api_test -c "drop schema public cascade; create schema public;"; and bundle exec rake db:migrate RAILS_ENV=test; and bundle exec rake db:seed:base RAILS_ENV=test'
+alias lb.skep 'chruby 2.3.0; and cd ~/Documents/linguabee/linguabee-skep; and bundle exec rails server -p 3003'
+alias lb.hive.localhost 'chruby 2.3.0; and cd ~/Documents/linguabee/linguabee-hive; and bundle exec rails server --binding=0.0.0.0 -p 3002'
+alias lb.test.reset 'psql linguabee_api_test -c "drop schema public cascade; create schema public;"; and bundle exec rake db:migrate RAILS_ENV=test; and bundle exec rake db:seed:base RAILS_ENV=test'
 alias lb.reset.develop 'psql linguabee_api_development -c "drop schema public cascade; create schema public;"'
 alias lb.create.migration 'bundle exec rails g migration'
 
@@ -59,26 +63,26 @@ function lb.api
 end
 
 
-# $ lb.update linguabee_api_invoices "http://long-assed-url-to-db"
+# $ lb.update
+#   will update linguabee_api_production with the local copy of latest.dump, does not download anything
+# $ lb.update "long-assed-url-to-db"
+#   will update linguabee_api_production with latest dump
+# $ lb.update invoices "http://long-assed-url-to-db"
+#   will update linguabee_api_invoices with the latest dump
 function lb.update_db
   if test (count $argv) -eq 2
     set -g db_name "linguabee_api_$argv[1]"
-    set -g url $argv[2]
+    curl -o latest.dump $argv[2]
   else if test (count $argv) -eq 1
     set -g db_name "linguabee_api_production"
-    set -g url $argv[1]
-
+    curl -o latest.dump $argv[1]
   else
-    echo lb.update_db: Expected at least one argument, the url
-    return 1
-
+    echo "using the old latest.dump file as no arguments present"
   end
 
   echo "lb.update_db: running DB: $db_name"
-  echo "lb.update_db: running url: $url"
 
   set -g -x FLIP_TABLE $db_name
-  curl -o latest.dump $url
   psql $db_name -c "drop schema public cascade; create schema public;"
   pg_restore --verbose --clean --no-acl --no-owner -h localhost -U damon -d $db_name latest.dump
   bundle exec rake db:mask_emails
@@ -87,4 +91,9 @@ end
 function ffmpeg.videocopy
     echo "COPYING VIDEO, TRANSCODING AUDIO"
     ffmpeg -i $argv[1] -vcodec copy -c:a libfaac -b:a 160k $argv[2]
+end
+
+function ffmpeg.videocopy.ac3
+    echo "COPYING VIDEO, TRANSCODING AUDIO"
+    ffmpeg -i $argv[1] -map 0 -vcodec copy -c:a ac3 -b:a 160k $argv[2]
 end
