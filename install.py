@@ -17,7 +17,7 @@ ATOM_PACKAGES_DIR = '/.atom'
 
 DIR_MAP = (
     # ("sublime", HOME_DIR + ST3_PACKAGES_DIR),
-    ("atom", HOME_DIR + ATOM_PACKAGES_DIR),
+    # ("atom", HOME_DIR + ATOM_PACKAGES_DIR),
 )
 
 WORKING_DIR = os.path.dirname(os.path.realpath(__file__))
