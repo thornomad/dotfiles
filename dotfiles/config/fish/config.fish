@@ -1,7 +1,7 @@
 source ~/.config/fish/aliases.fish
 
 # virtualenvwrapper / virtualfish
-eval (python -m virtualfish compat_aliases)
+eval (python3 -m virtualfish compat_aliases)
 
 # Fish git prompt
 set __fish_git_prompt_showdirtystate 'yes'
@@ -39,3 +39,5 @@ end
 
 source /usr/local/share/chruby/chruby.fish
 # source /usr/local/share/chruby/auto.fish
+
+# chruby ruby-2.3.0

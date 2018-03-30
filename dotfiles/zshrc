@@ -80,3 +80,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
+
+# added by travis gem
+[ -f /Users/damon/.travis/travis.sh ] && source /Users/damon/.travis/travis.sh
