@@ -10,6 +10,7 @@ tap 'caskroom/fonts'
 tap 'caskroom/cask'
 
 cask 'font-source-code-pro'
+cask 'font-open-sans'
 cask 'java' unless system '/usr/libexec/java_home --failfast'
 
 brew 'autoconf'
