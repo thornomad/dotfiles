@@ -17,6 +17,9 @@ alias seed_rollback='bundle exec rake seed:rollback'
 alias seed_migrate='bundle exec rake seed:migrate'
 
 
+# set PATH -gx /Users/damon/.gem/ruby/2.3.0/bin /Users/damon/.rubies/ruby-2.3.0/lib/ruby/gems/2.3.0/bin /Users/damon/.rubies/ruby-2.3.0/bin /usr/local/bin /usr/bin /bin /usr/sbin /sbin
+# set PATH -gx /Users/damon/.gem/ruby/2.5.0/bin /Users/damon/.rubies/ruby-2.5.0/lib/ruby/gems/2.5.0/bin /Users/damon/.rubies/ruby-2.5.0/bin /usr/local/bin /usr/bin /bin /usr/sbin /sbin
+
 # linguabee
 alias lb.maintenance.on 'heroku maintenance:on -a api-linguabee; heroku maintenance:on -a hive-linguabee; heroku maintenance:on -a linguabee'
 alias lb.maintenance.off 'heroku maintenance:off -a api-linguabee; heroku maintenance:off -a hive-linguabee; heroku maintenance:off -a linguabee'
