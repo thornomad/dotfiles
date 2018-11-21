@@ -4,6 +4,7 @@
 .*.swp
 .netrwhist
 *.sqlite3
+node_modules/
 
 # from https://raw.githubusercontent.com/github/gitignore/master/Python.gitignore
 

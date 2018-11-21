@@ -1,7 +1,7 @@
 source ~/.config/fish/aliases.fish
 
 # virtualenvwrapper / virtualfish
-eval (python3 -m virtualfish compat_aliases)
+# eval (python3 -m virtualfish compat_aliases)
 
 # Fish git prompt
 set __fish_git_prompt_showdirtystate 'yes'

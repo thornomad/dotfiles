@@ -7,16 +7,24 @@ alias ssh.nciec 'ssh nciec@site1'
 alias ssh.pai 'ssh pai@site1'
 alias ssh.diinst 'ssh diinst@site1'
 
-# ruby
-alias lb.chruby 'chruby (head -1 .ruby-version)'
 alias be 'bundle exec'
-alias rollback 'bundle exec rake db:rollback'
-alias migrate 'bundle exec rake db:migrate'
-alias migrate_test 'bundle exec rake db:migrate RAILS_ENV=test'
-alias seed_rollback='bundle exec rake seed:rollback'
-alias seed_migrate='bundle exec rake seed:migrate'
 
 
+alias lb.chruby 'chruby (head -1 .ruby-version)'
+alias lb.rollback 'bundle exec rake db:rollback'
+alias lb.migrate 'bundle exec rake db:migrate; bundle exec rake db:seed:base'
+alias lb.seed 'bundle exec rake db:seed:base'
+
+
+# ruby
+alias lb.console.api 'heroku run rails console -a api-linguabee'
+alias lb.console.stage 'heroku run rails console -a stage-api-linguabee'
+
+alias lb.migrate.stage 'heroku run rake db:migrate -a stage-api-linguabee'
+alias lb.migrate.api 'heroku run rake db:migrate -a api-linguabee'
+
+alias lb.seed.api 'heroku run rake db:seed:base -a api-linguabee'
+alias lb.seed.stage 'heroku run rake db:seed:base -a stage-api-linguabee'
 # set PATH -gx /Users/damon/.gem/ruby/2.3.0/bin /Users/damon/.rubies/ruby-2.3.0/lib/ruby/gems/2.3.0/bin /Users/damon/.rubies/ruby-2.3.0/bin /usr/local/bin /usr/bin /bin /usr/sbin /sbin
 # set PATH -gx /Users/damon/.gem/ruby/2.5.0/bin /Users/damon/.rubies/ruby-2.5.0/lib/ruby/gems/2.5.0/bin /Users/damon/.rubies/ruby-2.5.0/bin /usr/local/bin /usr/bin /bin /usr/sbin /sbin
 
@@ -27,8 +35,6 @@ alias lb.app 'cd ~/Documents/linguabee/linguabee-app; lb.chruby; and bundle exec
 alias lb.hive 'cd ~/Documents/linguabee/linguabee-hive; lb.chruby; and bundle exec rails server -p 3002 -b 0.0.0.0'
 alias lb.skep 'cd ~/Documents/linguabee/linguabee-skep; lb.chruby; and bundle exec rails server -p 3004'
 alias lb.hive.localhost 'cd ~/Documents/linguabee/linguabee-hive; and bundle exec rails server --binding=0.0.0.0 -p 3002'
-alias lb.test.reset 'psql linguabee_api_development -c "drop schema public cascade; create schema public;"; and env DATABASE_URL=linguabee_api_development bundle exec rake db:migrate RAILS_ENV=test; and env DATABASE_URL=linguabee_api_development bundle exec rake db:seed:base RAILS_ENV=test'
-alias lb.reset.develop 'psql linguabee_api_development -c "drop schema public cascade; create schema public;"'
 alias lb.create.migration 'bundle exec rails g migration'
 alias lb.kill.app 'kill -9 (cat /Users/damon/Documents/linguabee/linguabee-app/tmp/pids/server.pid)'
 alias lb.kill.api 'kill -9 (cat /Users/damon/Documents/linguabee/linguabee-api/tmp/pids/server.pid)'
@@ -64,33 +70,48 @@ alias fish.reload 'source ~/.config/fish/config.fish'
 
 # swaps databases, ie lb.api feature-sa
 function lb.api
-  if test (count $argv) -ne 1
-    set -g db_name "linguabee_api_production"
-  else
-    set -g db_name "linguabee_api_$argv[1]"
-  end
-  # set env variable for database.yml
-  set -g -x DATABASE_URL $db_name
-  echo "USING DATABASE: $db_name"
+  # if test (count $argv) -ne 1
+  #   set -g db_name "linguabee_api_production"
+  # else
+  #   set -g db_name "linguabee_api_$argv[1]"
+  # end
+  # # set env variable for database.yml
+  # set -g -x DATABASE_URL $db_name
+  # echo "USING DATABASE: $db_name"
   cd ~/Documents/linguabee/linguabee-api
   lb.chruby
   bundle exec rails server -p 3001
 end
 
-function lb.test
-  set -g db_name "linguabee_api_development"
-  set -g -x DATABASE_URL $db_name
-  echo "TESTING USING DATABASE: $db_name"
-  cd ~/Documents/linguabee/linguabee-api
-  lb.chruby
-  env DATABASE_URL=$db_name bundle exec rake
-end
+# function lb.test
+#   # set -g db_name "linguabee_api_development"
+#   # set -g -x DATABASE_URL $db_name
+#   # echo "TESTING USING DATABASE: $db_name"
+#   cd ~/Documents/linguabee/linguabee-api
+#   lb.chruby
+#   bundle exec rake --trace
+# end
 
 function lb.guard
-  set -g db_name "linguabee_api_development"
+  # set -g db_name "linguabee_api_development"
   cd ~/Documents/linguabee/linguabee-api
   lb.chruby
-  env DATABASE_URL=$db_name env RAILS_ENV="test" bundle exec guard -d
+  # env DATABASE_URL=$db_name env RAILS_ENV="test" bundle exec guard -d
+  bundle exec guard
+end
+
+function lb.console
+  cd ~/Documents/linguabee/linguabee-api
+  lb.chruby
+  bundle exec rails console
+end
+
+function lb.test.reset
+  cd ~/Documents/linguabee/linguabee-api
+  lb.chruby
+  psql linguabee_api_test -c "drop schema public cascade; create schema public;"
+  be rake db:migrate RAILS_ENV=test
+  be rake db:seed:base RAILS_ENV=test
 end
 
 # $ lb.update
@@ -99,24 +120,25 @@ end
 #   will update linguabee_api_development with latest dump
 function lb.update_db
   cd ~/Documents/linguabee/linguabee-api
-
-  if test (count $argv) -ne 1
-    set -g db_name "linguabee_api_production"
-  else
-    set -g db_name "linguabee_api_$argv[1]"
-  end
-
-  echo "lb.update_db: using DB - $db_name"
-
-  set -g -x DATABASE_URL $db_name
+  lb.chruby
+  #
+  # if test (count $argv) -ne 1
+  #   set -g db_name "linguabee_api_production"
+  # else
+  #   set -g db_name "linguabee_api_$argv[1]"
+  # end
+  #
+  # echo "lb.update_db: using DB - $db_name"
+  #
+  # set -g -x DATABASE_URL $db_name
   /usr/local/bin/heroku pg:backups:capture -a api-linguabee
   curl -o latest.dump (/usr/local/bin/heroku pg:backups:url -a api-linguabee)
   lb.update_db.local_copy
 end
 
 function lb.update_db.local_copy
-  psql $db_name -c "drop schema public cascade; create schema public;"
-  pg_restore --verbose --clean --no-acl --no-owner -h localhost -U damon -d $db_name latest.dump
+  psql linguabee_api_development -c "drop schema public cascade; create schema public;"
+  pg_restore --verbose --clean --no-acl --no-owner -h localhost -U damon -d linguabee_api_development latest.dump
   bundle exec rake db:mask_emails
   bundle exec rake db:seed:base
 end
