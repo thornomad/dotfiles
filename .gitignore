@@ -3,7 +3,12 @@ dotfiles.sublime-project
 dotfiles.sublime-workspace
 sublime-settings.sublime-workspace
 
+# nvim stuff
+/dotfiles/local/share/nvim/shada
+
 # fish stuff
-/dotfiles/config/fish/fish_history
-/dotfiles/config/fish/fish_read_history
-/dotfiles/config/fish/fishd.*
+/dotfiles/local/share/fish/*
+/dotfiles/config/fish/fishd*
+
+# heroku stuff
+/dotfiles/local/share/heroku/*
