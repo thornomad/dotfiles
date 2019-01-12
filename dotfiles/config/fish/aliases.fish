@@ -1,18 +1,25 @@
-# ssh aliases
-alias ssh.nciec_old 'ssh -p 2222 nciec@site2'
-alias ssh.kk 'ssh kkenney@site1'
-alias ssh.kf 'ssh kf@site1'
-alias ssh.rosalee 'ssh rosalee@site1'
-alias ssh.nciec 'ssh nciec@site1'
-alias ssh.pai 'ssh pai@site1'
-alias ssh.diinst 'ssh diinst@site1'
+# # ssh aliases
+# alias ssh.nciec_old 'ssh -p 2222 nciec@site2'
+# alias ssh.kk 'ssh kkenney@site1'
+# alias ssh.kf 'ssh kf@site1'
+# alias ssh.rosalee 'ssh rosalee@site1'
+# alias ssh.nciec 'ssh nciec@site1'
+# alias ssh.pai 'ssh pai@site1'
+# alias ssh.diinst 'ssh diinst@site1'
+
+alias cdhive 'cd ~/Documents/linguabee/linguabee-hive; lb.chruby'
+alias cdapi 'cd ~/Documents/linguabee/linguabee-api; lb.chruby'
+alias cdapp 'cd ~/Documents/linguabee/linguabee-app; lb.chruby'
+
+alias gfhs 'git flow hotfix start'
+alias gfhf 'git flow hotfix finish -n'
+alias gs 'git status'
 
 alias be 'bundle exec'
 
-
 alias lb.chruby 'chruby (head -1 .ruby-version)'
 alias lb.rollback 'bundle exec rake db:rollback'
-alias lb.migrate 'bundle exec rake db:migrate; bundle exec rake db:seed:base'
+alias lb.migrate 'bundle exec rake db:migrate; bundle exec rake db:seed:base; bundle exec rake journal:db:migrate'
 alias lb.seed 'bundle exec rake db:seed:base'
 
 
@@ -27,7 +34,7 @@ alias lb.seed.api 'heroku run rake db:seed:base -a api-linguabee'
 alias lb.seed.stage 'heroku run rake db:seed:base -a stage-api-linguabee'
 # set PATH -gx /Users/damon/.gem/ruby/2.3.0/bin /Users/damon/.rubies/ruby-2.3.0/lib/ruby/gems/2.3.0/bin /Users/damon/.rubies/ruby-2.3.0/bin /usr/local/bin /usr/bin /bin /usr/sbin /sbin
 # set PATH -gx /Users/damon/.gem/ruby/2.5.0/bin /Users/damon/.rubies/ruby-2.5.0/lib/ruby/gems/2.5.0/bin /Users/damon/.rubies/ruby-2.5.0/bin /usr/local/bin /usr/bin /bin /usr/sbin /sbin
-
+alias lb.add_prep_time 'heroku run rake db:prep_timer -a api-linguabee'
 # linguabee
 alias lb.maintenance.on 'heroku maintenance:on -a api-linguabee; heroku maintenance:on -a hive-linguabee; heroku maintenance:on -a linguabee'
 alias lb.maintenance.off 'heroku maintenance:off -a api-linguabee; heroku maintenance:off -a hive-linguabee; heroku maintenance:off -a linguabee'
@@ -40,8 +47,8 @@ alias lb.kill.app 'kill -9 (cat /Users/damon/Documents/linguabee/linguabee-app/t
 alias lb.kill.api 'kill -9 (cat /Users/damon/Documents/linguabee/linguabee-api/tmp/pids/server.pid)'
 alias lb.kill.hive 'kill -9 (cat /Users/damon/Documents/linguabee/linguabee-hive/tmp/pids/server.pid)'
 alias lb.kill.skep 'kill -9 (cat /Users/damon/Documents/linguabee/linguabee-skep/tmp/pids/server.pid)'
-alias lb.backup_api 'heroku pg:backups capture -a api-linguabee; heroku pg:backups -a api-linguabee public-url | cat'
-alias lb.backup_url 'heroku pg:backups -a api-linguabee public-url | cat'
+
+
 alias lb.sidekiq 'bundle exec sidekiq -e development -q default -q mailers -q broadcast'
 # from chad
 # alias backup_dl 'curl -o latest.dump'
@@ -58,12 +65,12 @@ end
 bind \es ".runsudo"
 
 # python aliases
-alias v 'workon'
-alias v.quit 'deactivate'
-alias v.mk 'mkvirtualenv --python python3'
-alias v.rm 'rmvirtualenv'
-alias v.cd 'cdvirtualenv'
-alias v.ls 'lssitepackages'
+# alias v 'workon'
+# alias v.quit 'deactivate'
+# alias v.mk 'mkvirtualenv --python python3'
+# alias v.rm 'rmvirtualenv'
+# alias v.cd 'cdvirtualenv'
+# alias v.ls 'lssitepackages'
 
 # fish aliases
 alias fish.reload 'source ~/.config/fish/config.fish'
@@ -91,7 +98,7 @@ end
 #   lb.chruby
 #   bundle exec rake --trace
 # end
-
+alias lb.guard.hive 'cd ~/Documents/linguabee/linguabee-hive; lb.chruby; bundle exec guard'
 function lb.guard
   # set -g db_name "linguabee_api_development"
   cd ~/Documents/linguabee/linguabee-api
@@ -110,30 +117,45 @@ function lb.test.reset
   cd ~/Documents/linguabee/linguabee-api
   lb.chruby
   psql linguabee_api_test -c "drop schema public cascade; create schema public;"
+  psql linguabee_journal_test -c "drop schema public cascade; create schema public;"
   be rake db:migrate RAILS_ENV=test
+  be rake journal:db:migrate RAILS_ENV=test
   be rake db:seed:base RAILS_ENV=test
 end
+
+#
+# if test (count $argv) -ne 1
+#   set -g db_name "linguabee_api_production"
+# else
+#   set -g db_name "linguabee_api_$argv[1]"
+# end
+#
+# echo "lb.update_db: using DB - $db_name"
+#
+# set -g -x DATABASE_URL $db_name
 
 # $ lb.update
 #   will update linguabee_api_production with the local copy of latest.dump, does not download anything
 # $ lb.update development
 #   will update linguabee_api_development with latest dump
 function lb.update_db
+  lb.update_db.download_only
+  lb.update_db.local_copy
+end
+
+function lb.update_db.download_only
   cd ~/Documents/linguabee/linguabee-api
   lb.chruby
-  #
-  # if test (count $argv) -ne 1
-  #   set -g db_name "linguabee_api_production"
-  # else
-  #   set -g db_name "linguabee_api_$argv[1]"
-  # end
-  #
-  # echo "lb.update_db: using DB - $db_name"
-  #
-  # set -g -x DATABASE_URL $db_name
   /usr/local/bin/heroku pg:backups:capture -a api-linguabee
   curl -o latest.dump (/usr/local/bin/heroku pg:backups:url -a api-linguabee)
-  lb.update_db.local_copy
+end
+
+function lb.update_db.journal
+  cd ~/Documents/linguabee/linguabee-api
+  lb.chruby
+  /usr/local/bin/heroku pg:backups:capture postgresql-shallow-35928 -a api-linguabee
+  curl -o latest_journal.dump (/usr/local/bin/heroku pg:backups:url -a api-linguabee)
+  lb.update_db.journal.local_copy
 end
 
 function lb.update_db.local_copy
@@ -141,6 +163,12 @@ function lb.update_db.local_copy
   pg_restore --verbose --clean --no-acl --no-owner -h localhost -U damon -d linguabee_api_development latest.dump
   bundle exec rake db:mask_emails
   bundle exec rake db:seed:base
+end
+
+function lb.update_db.journal.local_copy
+  psql linguabee_journal_development -c "drop schema public cascade; create schema public;"
+  pg_restore --verbose --clean --no-acl --no-owner -h localhost -U damon -d linguabee_journal_development latest_journal.dump
+  bundle exec rake db:mask_emails
 end
 
 function ffmpeg.videocopy
