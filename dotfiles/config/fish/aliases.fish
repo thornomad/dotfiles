@@ -192,6 +192,8 @@ function nvim.plugin.add
   cd $dir
 end
 
+# this does not seem to work, but adding does:
+# https://gist.github.com/manasthakur/d4dc9a610884c60d944a4dd97f0b3560
 function nvim.plugin.remove
   set dir (pwd)
   cd ~/Documents/dotfiles
