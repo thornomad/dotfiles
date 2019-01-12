@@ -1,11 +1,8 @@
-# # ssh aliases
-# alias ssh.nciec_old 'ssh -p 2222 nciec@site2'
-# alias ssh.kk 'ssh kkenney@site1'
-# alias ssh.kf 'ssh kf@site1'
-# alias ssh.rosalee 'ssh rosalee@site1'
-# alias ssh.nciec 'ssh nciec@site1'
-# alias ssh.pai 'ssh pai@site1'
-# alias ssh.diinst 'ssh diinst@site1'
+alias vim nvim
+
+# ssh aliases
+
+
 
 alias cdhive 'cd ~/Documents/linguabee/linguabee-hive; lb.chruby'
 alias cdapi 'cd ~/Documents/linguabee/linguabee-api; lb.chruby'
@@ -184,6 +181,24 @@ end
 function ffmpeg.transcode
     echo "COPYING VIDEO, TRANSCODING AUDIO TO AC3"
     ffmpeg -i $argv[1] -map 0:v -vcodec copy -map 0:a:0 -acodec copy -map -0:s  $argv[2]
+end
+
+function nvim.plugin.add
+  set dir (pwd)
+  cd ~/.local/share/nvim/site
+  set splits (string split / $argv[1])
+  set folder (string replace ".git" "" $splits[-1])
+  git submodule add $argv[1] pack/thornomad/start/$folder
+  cd $dir
+end
+
+function nvim.plugin.remove
+  set dir (pwd)
+  cd ~/Documents/dotfiles
+  git submodule deinit dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
+  git rm -r dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
+  rm -r .git/modules/dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
+  cd $dir
 end
 
 # ffmpeg -i DYUSA_SystematicOppression.mp4 -vf subtitles=DYUSA_SystematicOppression.en.vtt DYUSA_SystematicOppression.Subs.mp4
