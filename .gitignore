@@ -5,6 +5,7 @@ sublime-settings.sublime-workspace
 
 # nvim stuff
 /dotfiles/local/share/nvim/shada/
+/dotfiles/local/share/nvim/swap/
 
 # fish stuff
 /dotfiles/local/share/fish/*
