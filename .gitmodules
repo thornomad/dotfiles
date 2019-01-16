@@ -4,3 +4,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/gruvbox"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/gruvbox
 	url = https://github.com/morhetz/gruvbox.git
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/fzf.vim"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
