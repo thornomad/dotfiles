@@ -84,7 +84,7 @@ function lb.api
   # echo "USING DATABASE: $db_name"
 
   set -g -x ENABLE_SIDEKIQ_TESTING false
-  cdapi 
+  cdapi
   bundle exec rails server -p 3001
 end
 
@@ -103,6 +103,7 @@ end
 #   bundle exec rake --trace
 # end
 alias lb.guard.hive 'cd ~/Documents/linguabee/linguabee-hive; lb.chruby; bundle exec guard'
+alias lb.guard.app 'cd ~/Documents/linguabee/linguabee-app; lb.chruby; bundle exec guard'
 function lb.guard
   # set -g db_name "linguabee_api_development"
   cd ~/Documents/linguabee/linguabee-api
