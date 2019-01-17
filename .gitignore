@@ -3,6 +3,9 @@ dotfiles.sublime-project
 dotfiles.sublime-workspace
 sublime-settings.sublime-workspace
 
+
+/dotfiles/config/configstore/*
+
 # nvim stuff
 /dotfiles/local/share/nvim/shada/
 /dotfiles/local/share/nvim/swap/
