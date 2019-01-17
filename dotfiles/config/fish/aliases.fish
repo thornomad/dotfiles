@@ -82,8 +82,15 @@ function lb.api
   # # set env variable for database.yml
   # set -g -x DATABASE_URL $db_name
   # echo "USING DATABASE: $db_name"
-  cd ~/Documents/linguabee/linguabee-api
-  lb.chruby
+
+  set -g -x ENABLE_SIDEKIQ_TESTING false
+  cdapi 
+  bundle exec rails server -p 3001
+end
+
+function lb.api.sidekiq
+  set -g -x ENABLE_SIDEKIQ_TESTING true
+  cdapi
   bundle exec rails server -p 3001
 end
 

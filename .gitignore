@@ -3,7 +3,8 @@ dotfiles.sublime-project
 dotfiles.sublime-workspace
 sublime-settings.sublime-workspace
 
-
+# git stuff
+dotfiles/config/git/gitk
 /dotfiles/config/configstore/*
 
 # nvim stuff
