@@ -36,6 +36,7 @@ brew 'xvid'
 brew 'ffmpeg', args: ['with-faac', 'with-libass']
 brew 'flac'
 brew 'fribidi'
+brew 'fzf'
 brew 'readline'
 brew 'gawk'
 brew 'gdbm'
@@ -68,6 +69,7 @@ brew 'node@6'
 brew 'postgresql', restart_service: true
 brew 'python'
 brew 'redis', restart_service: true
+brew 'rg'
 brew 'ruby'
 brew 'ruby-install'
 brew 'terminal-notifier'
