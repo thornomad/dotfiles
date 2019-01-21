@@ -17,7 +17,19 @@ set autoindent
 filetype plugin on
 filetype plugin indent on
 
-set backspace=indent,eol,start  " more powerful backspacing
+" treat es6 files like javascript files
+au BufNewFile,BufRead *.es6 set filetype=javascript
+" autocmd BufWritePost,FileWritePost *.coffee :silent !coffee --compile --join appstore/static/javascripts/angular/controllers.js file1.coffee file2.coffee
+autocmd BufWritePost,FileWritePost *.es6 :silent !babel <afile> -o <afile>:r.js
+
+" FOLDING - not working right yet, don't want it by default
+set foldmethod=syntax " this should allow folding
+set foldnestmax=5       " this is how deep to fold
+set foldlevelstart=2
+
+
+" Fix backspacing and make it more better
+set backspace=indent,eol,start
 
 " allow dash-based-names to be considered one word
 set iskeyword+=-
@@ -39,6 +51,10 @@ nmap <silent> <leader>sl :source .vim_session<CR>
 :command! -bar -bang Q quit<bang>
 :command! -bar -bang W write<bang>
 " :command! -bar -bang X exit<bang>
+
+" close buffer without losing the split (or try not to)
+nnoremap <C-W><C-W> :bp\|bd #<CR>
+
 
 " use just CTRL+J,K,L,H to switch windows
 nnoremap <C-J> <C-W><C-J>
@@ -75,8 +91,8 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
 " re-center screen as we move through search items consistently
-nnoremap n nzz
-nnoremap N Nzz
+" nnoremap n nzz
+" nnoremap N Nzz
 " --------------------------------------------------------------------------------
 " COLORS AND THEMES AND FORMATTING OH MY
 " --------------------------------------------------------------------------------
@@ -92,6 +108,16 @@ colorscheme gruvbox
 " --------------------------------------------------------------------------------
 let g:ale_sign_column_always = 1 " always show the gutter!
 let g:airline#extensions#ale#enabled = 1 " integrate with airline
+
+nmap <Leader>af <Plug>(ale_fix)
+
+" add default fixer for ALE with javascript
+" 'prettier_eslint'
+let g:ale_fixers = {
+\   'javascript': [
+\       'prettier_eslint',
+\   ],
+\}
 
 " --------------------------------------------------------------------------------
 " FILE BROWSING
