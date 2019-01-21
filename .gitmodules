@@ -19,3 +19,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-airline"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-ruby-heredoc-syntax"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-ruby-heredoc-syntax
+	url = https://github.com/joker1007/vim-ruby-heredoc-syntax.git
