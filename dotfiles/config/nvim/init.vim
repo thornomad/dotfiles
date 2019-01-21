@@ -115,7 +115,7 @@ nmap <Leader>af <Plug>(ale_fix)
 " 'prettier_eslint'
 let g:ale_fixers = {
 \   'javascript': [
-\       'prettier_eslint',
+\       'eslint',
 \   ],
 \}
 
