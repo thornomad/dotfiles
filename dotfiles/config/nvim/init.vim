@@ -23,8 +23,8 @@ set backspace=indent,eol,start  " more powerful backspacing
 set iskeyword+=-
 
 " set cursor to line or block depending on the mode
-"let &t_SI .= "<Esc>[5 q" " insert mode - line | 
-"let &t_SR .= "<Esc>[4 q" "common - block 
+"let &t_SI .= "<Esc>[5 q" " insert mode - line |
+"let &t_SR .= "<Esc>[4 q" "common - block
 
 
 " change the mapleader from \ to ,
@@ -33,7 +33,8 @@ let mapleader=","
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ve :e $MYVIMRC<CR>
 nmap <silent> <leader>vr :so $MYVIMRC<CR>
-
+nmap <silent> <leader>ss :mksession! .vim_session<CR>
+nmap <silent> <leader>sl :source .vim_session<CR>
 " map upppercase commands I mistype to their lowercase counterparts
 :command! -bar -bang Q quit<bang>
 :command! -bar -bang W write<bang>
@@ -83,9 +84,14 @@ set termguicolors
 let g:gruvbox_italic=1 " seeing if we can get italics correctly
 
 let g:gruvbox_contrast_dark='soft'
-" let g:gruvbox_color_column='bg1'
 colorscheme gruvbox
 
+
+" --------------------------------------------------------------------------------
+" ALE - File linting
+" --------------------------------------------------------------------------------
+let g:ale_sign_column_always = 1 " always show the gutter!
+let g:airline#extensions#ale#enabled = 1 " integrate with airline
 
 " --------------------------------------------------------------------------------
 " FILE BROWSING
@@ -98,10 +104,22 @@ set rtp+=/usr/local/opt/fzf
 
 
 
+" --------------------------------------------------------------------------------
+" FIX TRAILING WHITESPACE ON SAVE
+" --------------------------------------------------------------------------------
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+" autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 
 " --------------------------------------------------------------------------------
-" UNUSED STUFF WILL JETTISON EVENTUALLY 
+" UNUSED STUFF WILL JETTISON EVENTUALLY
 " --------------------------------------------------------------------------------
 "
 "
@@ -119,19 +137,19 @@ set rtp+=/usr/local/opt/fzf
 " " open splits at bottom and right
 " set splitbelow
 " set splitright
-" 
-" 
+"
+"
 " " --------------------------------------------------------------------------------
 " " CTRL-P specific settings
 " " --------------------------------------------------------------------------------
-" 
-" " open ctrp split vertically by default ? 
+"
+" " open ctrp split vertically by default ?
 " let g:ctrlp_prompt_mappings = {
 "     \ 'AcceptSelection("e")': ['<c-v>', '<2-LeftMouse>'],
 "     \ 'AcceptSelection("v")': ['<cr>', '<RightMouse>'],
 "     \ }
-" 
-" 
+"
+"
 " " this allows for ctrlp to accept spaces when doing fuzzy search
 " let g:ctrlp_abbrev = {
 "   \ 'gmode': 'i',
@@ -143,4 +161,4 @@ set rtp+=/usr/local/opt/fzf
 "     \ },
 "     \ ]
 "   \ }
-" 
+"
