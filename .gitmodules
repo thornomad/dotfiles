@@ -16,3 +16,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/ale"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/ale
 	url = https://github.com/w0rp/ale.git
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-airline"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
