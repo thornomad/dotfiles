@@ -200,6 +200,13 @@ function nvim.plugin.add
   cd $dir
 end
 
+function nvim.plugin.list
+  set dir (pwd)
+  cd ~/Documents/dotfiles
+  git submodule | awk -F '/' '{ print $9 }'
+  cd $dir
+end
+
 # this does not seem to work, but adding does:
 # https://gist.github.com/manasthakur/d4dc9a610884c60d944a4dd97f0b3560
 function nvim.plugin.remove
@@ -207,7 +214,7 @@ function nvim.plugin.remove
   cd ~/Documents/dotfiles
   git submodule deinit dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
   git rm -r dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
-  rm -r .git/modules/dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
+  rm -Rf .git/modules/dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
   cd $dir
 end
 
