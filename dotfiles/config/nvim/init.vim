@@ -4,6 +4,7 @@ set number 	                    " line numbers
 syntax enable                   " highlight stuff
 set cursorline                  " higlight current line
 set nowrap                      " turn off line wrapping cuz it's creepy
+set autoread                    " automatically reload the file when it changes on disk
 " set colorcolumn=+1,+2,+3
 set textwidth=100               " set the color column for line wrapping recommendations
 
@@ -19,14 +20,12 @@ filetype plugin indent on
 
 " treat es6 files like javascript files
 au BufNewFile,BufRead *.es6 set filetype=javascript
-" autocmd BufWritePost,FileWritePost *.coffee :silent !coffee --compile --join appstore/static/javascripts/angular/controllers.js file1.coffee file2.coffee
 autocmd BufWritePost,FileWritePost *.es6 :silent !babel <afile> -o <afile>:r.js
 
 " FOLDING - not working right yet, don't want it by default
 set foldmethod=syntax " this should allow folding
 set foldnestmax=5       " this is how deep to fold
-set foldlevelstart=2
-
+set foldlevelstart=99
 
 " Fix backspacing and make it more better
 set backspace=indent,eol,start
@@ -125,10 +124,17 @@ let g:ale_fixers = {
 let g:netrw_liststyle = 3
 let g:netrw_winsize = 20
 
+" Per default, netrw leaves unmodified buffers open. This autocommand
+" deletes netrw's buffer once it's hidden (using ':q', for example)
+autocmd FileType netrw setl bufhidden=delete
+
 set rtp+=/usr/local/opt/fzf
 
-
-
+" --------------------------------------------------------------------------------
+" AIRLINE - settings
+" --------------------------------------------------------------------------------
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_section_y = ''
 
 " --------------------------------------------------------------------------------
 " FIX TRAILING WHITESPACE ON SAVE
