@@ -41,3 +41,5 @@ source /usr/local/share/chruby/chruby.fish
 # source /usr/local/share/chruby/auto.fish
 
 # chruby ruby-2.3.0
+set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
+set -g fish_user_paths "/usr/local/opt/postgresql@10/bin" $fish_user_paths

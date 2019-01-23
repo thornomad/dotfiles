@@ -16,6 +16,7 @@ alias be 'bundle exec'
 
 alias lb.chruby 'chruby (head -1 .ruby-version)'
 alias lb.rollback 'bundle exec rake db:rollback'
+alias lb.rollback.journal 'bundle exec rake journal:db:rollback'
 alias lb.migrate 'bundle exec rake db:migrate; bundle exec rake db:seed:base; bundle exec rake journal:db:migrate'
 alias lb.seed 'bundle exec rake db:seed:base'
 
