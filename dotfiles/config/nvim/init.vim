@@ -8,15 +8,38 @@ set autoread                    " automatically reload the file when it changes 
 " set colorcolumn=+1,+2,+3
 set textwidth=100               " set the color column for line wrapping recommendations
 
-" default spacing and tabs
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+set smarttab                    " insert tabs on the start of a line according to shiftwide, not tabtoet noerrorbells
 set autoindent
+set splitbelow                  " open splits below by default
+set splitright                  " open splits to the right by default
+
+set showmatch                   " set show matching parenthesis
+set ignorecase                  " ignore case when searching
+set smartcase                   " ignore case if search pattern is all lowercase, case-sensitive otherwise
+set nobackup                    " do not keep backups
+set noswapfile                  " no swap files please
+
+
+
+set completeopt=longest,menuone " this always shows the suggestion menu even if there is only one suggestion
+
 
 filetype plugin on
 filetype plugin indent on
+
+
+" Save whenever switching windows or leaving vim. This is useful when running
+" the tests inside vim without having to save all files first.
+au FocusLost,WinLeave * :silent! wa
+
+" Trigger autoread when changing buffers or coming back to vim.
+au FocusLost,WinLeave * :silent! noautocmd w " prevent autocomd slowing things down
+" au FocusGained,BufEnter * :silent! !
+
 
 " treat es6 files like javascript files
 au BufNewFile,BufRead *.es6 set filetype=javascript
@@ -41,11 +64,20 @@ set iskeyword+=-
 " change the mapleader from \ to ,
 let mapleader=","
 
+" Thanks to Steve Losh for this liberating tip - regex better when searching
+" See http://stevelosh.com/blog/2010/09/coming-home-to-vim
+nnoremap / /\v
+vnoremap / /\v
+
+" turn off highlighting
+nnoremap <leader><leader> :noh<cr>
+
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ve :e $MYVIMRC<CR>
 nmap <silent> <leader>vr :so $MYVIMRC<CR>
 nmap <silent> <leader>ss :mksession! .vim_session<CR>
 nmap <silent> <leader>sl :source .vim_session<CR>
+
 " map upppercase commands I mistype to their lowercase counterparts
 :command! -bar -bang Q quit<bang>
 :command! -bar -bang W write<bang>
@@ -61,23 +93,12 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" default to opening new splits
-set splitbelow
-set splitright
-
-" this always shows the suggestion menu even if there is only one suggestion
-set completeopt=longest,menuone
-
 " change the current screen size using the arrow keys
 " since we don't use arrow keys anyway
 noremap <up>    <C-W>+
 noremap <down>  <C-W>-
 noremap <left>  3<C-W><
 noremap <right> 3<C-W>>
-
-" suggestion, to set to a specific layout size
-" nnoremap <silent> <Leader>= :exe "vertical resize " . (winheight(0) * 3/2)<CR>
-" nnoremap <silent> <Leader>- :exe "vertical resize " . (winheight(0) * 2/3)<CR>
 
 " ctrl-p to open fzf files browser
 nnoremap <C-p> :Files<CR>
@@ -100,6 +121,7 @@ let g:gruvbox_italic=1 " seeing if we can get italics correctly
 
 let g:gruvbox_contrast_dark='soft'
 colorscheme gruvbox
+
 
 
 " --------------------------------------------------------------------------------

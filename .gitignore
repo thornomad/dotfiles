@@ -10,6 +10,7 @@ dotfiles/config/git/gitk
 # nvim stuff
 /dotfiles/local/share/nvim/shada/
 /dotfiles/local/share/nvim/swap/
+/dotfiles/local/share/nvim/log
 
 # fish stuff
 /dotfiles/local/share/fish/*
