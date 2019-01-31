@@ -28,6 +28,3 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gh-line"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gh-line
 	url = https://github.com/ruanyl/vim-gh-line.git
-[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/splitjoin.vim"]
-	path = dotfiles/local/share/nvim/site/pack/thornomad/start/splitjoin.vim
-	url = https://github.com/AndrewRadev/splitjoin.vim.git
