@@ -23,7 +23,7 @@ set smartcase                   " ignore case if search pattern is all lowercase
 set nobackup                    " do not keep backups
 set noswapfile                  " no swap files please
 
-
+set clipboard=unnamed           " use mac clipboard?
 
 set completeopt=longest,menuone " this always shows the suggestion menu even if there is only one suggestion
 
@@ -34,10 +34,10 @@ filetype plugin indent on
 
 " Save whenever switching windows or leaving vim. This is useful when running
 " the tests inside vim without having to save all files first.
-au FocusLost,WinLeave * :silent! wa
+" au FocusLost,WinLeave * :silent! wa
 
 " Trigger autoread when changing buffers or coming back to vim.
-au FocusLost,WinLeave * :silent! noautocmd w " prevent autocomd slowing things down
+" au FocusLost,WinLeave * :silent! noautocmd w " prevent autocomd slowing things down
 " au FocusGained,BufEnter * :silent! !
 
 
@@ -56,10 +56,9 @@ set backspace=indent,eol,start
 " allow dash-based-names to be considered one word
 set iskeyword+=-
 
-" set cursor to line or block depending on the mode
-"let &t_SI .= "<Esc>[5 q" " insert mode - line |
-"let &t_SR .= "<Esc>[4 q" "common - block
-
+" --------------------------------------------------------------------------------
+" MAPPINGS FOR KEYS
+" --------------------------------------------------------------------------------
 
 " change the mapleader from \ to ,
 let mapleader=","
@@ -72,24 +71,38 @@ vnoremap / /\v
 " turn off highlighting
 nnoremap <leader><leader> :noh<cr>
 
+" relearn to quite and save/quit without closing buffers
+" close buffer without losing the split (or try not to)
+" nnoremap <leader>q :bp\|bd #<CR>
+map <silent> <leader>q :bp<bar>vsp<bar>bn<bar>bd<CR>
+
+nnoremap <leader>x :w\\bp\|bd #<CR>
+
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ve :e $MYVIMRC<CR>
 nmap <silent> <leader>vr :so $MYVIMRC<CR>
 nmap <silent> <leader>ss :mksession! .vim_session<CR>
 nmap <silent> <leader>sl :source .vim_session<CR>
 
+" https://github.com/ruanyl/vim-gh-line
+let g:gh_line_map = '<leader>gh'
+let g:gh_line_blame_map = '<leader>gb'
+
+
+
 " map upppercase commands I mistype to their lowercase counterparts
 :command! -bar -bang Q quit<bang>
 :command! -bar -bang W write<bang>
+:command! -nargs=* T split | terminal <args>
+:command! -nargs=* TV vsplit | terminal <args>
+":command! -nargs=* T vsplit | vertical resize 100 | terminal <args>
 " :command! -bar -bang X exit<bang>
 
-" close buffer without losing the split (or try not to)
-nnoremap <C-W><C-W> :bp\|bd #<CR>
 
 
 " use just CTRL+J,K,L,H to switch windows
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
@@ -101,14 +114,27 @@ noremap <left>  3<C-W><
 noremap <right> 3<C-W>>
 
 " ctrl-p to open fzf files browser
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :GFiles<CR>
 
 " ctrl-f to find within files using ag
 nnoremap <C-f> :Rg<CR>
 
 " use tab to move between buffers
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+" nnoremap <Tab> :bnext<CR>
+" nnoremap <S-Tab> :bprevious<CR>
+
+
+" try to remap the escape key in insert mode
+inoremap jk <esc>
+
+
+" --------------------------------------------------------------------------------
+" TERMINAL REMAPPING
+
+" use esc to leave terminal mode
+tnoremap <Esc> <C-\><C-n>
+
+
 
 " re-center screen as we move through search items consistently
 " nnoremap n nzz
@@ -121,6 +147,7 @@ let g:gruvbox_italic=1 " seeing if we can get italics correctly
 
 let g:gruvbox_contrast_dark='soft'
 colorscheme gruvbox
+" colorscheme onedark
 
 
 
@@ -131,7 +158,8 @@ let g:ale_sign_column_always = 1 " always show the gutter!
 let g:airline#extensions#ale#enabled = 1 " integrate with airline
 
 nmap <Leader>af <Plug>(ale_fix)
-
+nmap <silent> <Leader>ap <Plug>(ale_previous_wrap)
+nmap <silent> <Leader>an <Plug>(ale_next_wrap)
 " add default fixer for ALE with javascript
 " 'prettier_eslint'
 let g:ale_fixers = {

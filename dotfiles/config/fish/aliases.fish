@@ -25,8 +25,8 @@ alias lb.seed 'bundle exec rake db:seed:base'
 alias lb.console.api 'heroku run rails console -a api-linguabee'
 alias lb.console.stage 'heroku run rails console -a stage-api-linguabee'
 
-alias lb.migrate.stage 'heroku run rake db:migrate -a stage-api-linguabee'
-alias lb.migrate.api 'heroku run rake db:migrate -a api-linguabee'
+alias lb.migrate.stage 'heroku run rake db:migrate -a stage-api-linguabee; heroku run rake journal:db:migrate -a stage-api-linguabee'
+alias lb.migrate.api 'heroku run rake db:migrate -a api-linguabee; heroku run rake journal:db:migrate -a api-linguabee'
 
 alias lb.seed.api 'heroku run rake db:seed:base -a api-linguabee'
 alias lb.seed.stage 'heroku run rake db:seed:base -a stage-api-linguabee'
@@ -116,6 +116,7 @@ end
 function lb.console
   cd ~/Documents/linguabee/linguabee-api
   lb.chruby
+  set -g -x ENABLE_SIDEKIQ_TESTING true
   bundle exec rails console
 end
 
