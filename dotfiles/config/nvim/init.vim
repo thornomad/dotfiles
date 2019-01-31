@@ -62,21 +62,24 @@ set iskeyword+=-
 
 " change the mapleader from \ to ,
 let mapleader=","
+" since , is the reverse of ; remap it so we can use it if needed
+nnoremap \ ,
 
 " Thanks to Steve Losh for this liberating tip - regex better when searching
 " See http://stevelosh.com/blog/2010/09/coming-home-to-vim
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 
 " turn off highlighting
 nnoremap <leader><leader> :noh<cr>
 
-" relearn to quite and save/quit without closing buffers
+" relearn to quit and save/quit without closing buffers
 " close buffer without losing the split (or try not to)
-" nnoremap <leader>q :bp\|bd #<CR>
-map <silent> <leader>q :bp<bar>vsp<bar>bn<bar>bd<CR>
+nnoremap <silent> <leader>q :bp<bar>vsp<bar>bn<bar>bd<CR>
+nnoremap <silent> <leader>x :w<bar>vsp<bar>bn<bar>bd<CR>
 
-nnoremap <leader>x :w\\bp\|bd #<CR>
+nnoremap <silent> <leader><Tab> :bnext<CR>
+nnoremap <silent> <leader><S-Tab> :bprevious<CR>
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ve :e $MYVIMRC<CR>
