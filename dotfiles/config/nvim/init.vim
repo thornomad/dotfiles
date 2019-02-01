@@ -76,7 +76,6 @@ nnoremap <leader><leader> :noh<cr>
 " relearn to quit and save/quit without closing buffers
 " close buffer without losing the split (or try not to)
 nnoremap <silent> <leader>q :bp<bar>vsp<bar>bn<bar>bd<CR>
-nnoremap <silent> <leader>x :w<bar>vsp<bar>bn<bar>bd<CR>
 
 nnoremap <silent> <leader><Tab> :bnext<CR>
 nnoremap <silent> <leader><S-Tab> :bprevious<CR>
@@ -206,47 +205,3 @@ endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 
-" --------------------------------------------------------------------------------
-" UNUSED STUFF WILL JETTISON EVENTUALLY
-" --------------------------------------------------------------------------------
-"
-"
-"
-"
-"
-" https://stackoverflow.com/questions/16082991/vim-switching-between-files-rapidly-using-vanilla-vim-no-plugins/16084326#16084326
-" set path=.,**
-" nnoremap <leader>f :find *
-" nnoremap <leader>s :sfind *
-" nnoremap <leader>v :vert sfind *
-" nnoremap <leader>t :tabfind *
-"let mapleader="<space>"
-
-" " open splits at bottom and right
-" set splitbelow
-" set splitright
-"
-"
-" " --------------------------------------------------------------------------------
-" " CTRL-P specific settings
-" " --------------------------------------------------------------------------------
-"
-" " open ctrp split vertically by default ?
-" let g:ctrlp_prompt_mappings = {
-"     \ 'AcceptSelection("e")': ['<c-v>', '<2-LeftMouse>'],
-"     \ 'AcceptSelection("v")': ['<cr>', '<RightMouse>'],
-"     \ }
-"
-"
-" " this allows for ctrlp to accept spaces when doing fuzzy search
-" let g:ctrlp_abbrev = {
-"   \ 'gmode': 'i',
-"   \ 'abbrevs': [
-"     \ {
-"       \ 'pattern': ' ',
-"       \ 'expanded': '',
-"       \ 'mode': 'pfrz',
-"     \ },
-"     \ ]
-"   \ }
-"
