@@ -1,19 +1,32 @@
-set hidden                      " hide buffers instead of closing, leaving unwritten changes
-set autoindent                  " Auto indention should be on
+" Enabling filetype support provides filetype-specific indenting,
+" syntax highlighting, omni-completion and other useful settings.
+filetype plugin indent on
+syntax on
+
+" `matchit.vim` is built-in so let's enable it!
+" Hit `%` on `if` to jump to `else`.
+runtime macros/matchit.vim
+
+set autoindent                 " Minimal automatic indenting for any filetype.
+set backspace=indent,eol,start " Proper backspace behavior.
+set hidden                     " Possibility to have more than one unsaved buffers.
+set incsearch                  " Incremental search, hit `<CR>` to stop.
+set ruler                      " Shows the current line number at the bottom-right
+                               " of the screen.
+
+set wildmenu                   " Great command-line completion, use `<Tab>` to move
+                               " around and `<CR>` to validate.
 set number 	                    " line numbers
-syntax enable                   " highlight stuff
 set cursorline                  " higlight current line
 set nowrap                      " turn off line wrapping cuz it's creepy
 set autoread                    " automatically reload the file when it changes on disk
-" set colorcolumn=+1,+2,+3
-set textwidth=100               " set the color column for line wrapping recommendations
+set termguicolors               " prev: $NVIM_TUI_ENABLE_TRUE_COLOR=1 " 24-bit colors
 
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
 set smarttab                    " insert tabs on the start of a line according to shiftwide, not tabtoet noerrorbells
-set autoindent
 set splitbelow                  " open splits below by default
 set splitright                  " open splits to the right by default
 
@@ -23,13 +36,12 @@ set smartcase                   " ignore case if search pattern is all lowercase
 set nobackup                    " do not keep backups
 set noswapfile                  " no swap files please
 
-set clipboard=unnamed           " use mac clipboard?
-
+set clipboard=unnamed           " use mac clipboard! same as unnamedplus on mac
+set mouse=a                     " enable mouse! gack
 set completeopt=longest,menuone " this always shows the suggestion menu even if there is only one suggestion
 
 
-filetype plugin on
-filetype plugin indent on
+
 
 
 " Save whenever switching windows or leaving vim. This is useful when running
@@ -50,101 +62,22 @@ set foldmethod=syntax " this should allow folding
 set foldnestmax=5       " this is how deep to fold
 set foldlevelstart=99
 
-" Fix backspacing and make it more better
-set backspace=indent,eol,start
 
 " allow dash-based-names to be considered one word
 set iskeyword+=-
 
-" --------------------------------------------------------------------------------
-" MAPPINGS FOR KEYS
-" --------------------------------------------------------------------------------
-
-" change the mapleader from \ to ,
-let mapleader=","
-" since , is the reverse of ; remap it so we can use it if needed
-nnoremap \ ,
-
-" Thanks to Steve Losh for this liberating tip - regex better when searching
-" See http://stevelosh.com/blog/2010/09/coming-home-to-vim
-" nnoremap / /\v
-" vnoremap / /\v
-
-" turn off highlighting
-nnoremap <leader><leader> :noh<cr>
-
-" relearn to quit and save/quit without closing buffers
-" close buffer without losing the split (or try not to)
-nnoremap <silent> <leader>q :bp<bar>vsp<bar>bn<bar>bd<CR>
-
-nnoremap <silent> <leader><Tab> :bnext<CR>
-nnoremap <silent> <leader><S-Tab> :bprevious<CR>
-
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ve :e $MYVIMRC<CR>
-nmap <silent> <leader>vr :so $MYVIMRC<CR>
-nmap <silent> <leader>ss :mksession! .vim_session<CR>
-nmap <silent> <leader>sl :source .vim_session<CR>
-
-" https://github.com/ruanyl/vim-gh-line
-let g:gh_line_map = '<leader>gh'
-let g:gh_line_blame_map = '<leader>gb'
 
 
+source ~/.config/nvim/mappings.vim
 
-" map upppercase commands I mistype to their lowercase counterparts
-:command! -bar -bang Q quit<bang>
-:command! -bar -bang W write<bang>
-:command! -nargs=* T split | terminal <args>
-:command! -nargs=* TV vsplit | terminal <args>
-":command! -nargs=* T vsplit | vertical resize 100 | terminal <args>
-" :command! -bar -bang X exit<bang>
+" load all of the plugin confi stuff
+for f in split(glob('~/.config/nvim/config/plugins/*.vim'), '\n')
+  exe 'source' f
+endfor
 
-
-
-" use just CTRL+J,K,L,H to switch windows
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" change the current screen size using the arrow keys
-" since we don't use arrow keys anyway
-noremap <up>    <C-W>+
-noremap <down>  <C-W>-
-noremap <left>  3<C-W><
-noremap <right> 3<C-W>>
-
-" ctrl-p to open fzf files browser
-nnoremap <C-p> :GFiles<CR>
-
-" ctrl-f to find within files using ag
-nnoremap <C-f> :Rg<CR>
-
-" use tab to move between buffers
-" nnoremap <Tab> :bnext<CR>
-" nnoremap <S-Tab> :bprevious<CR>
-
-
-" try to remap the escape key in insert mode
-inoremap jk <esc>
-
-
-" --------------------------------------------------------------------------------
-" TERMINAL REMAPPING
-
-" use esc to leave terminal mode
-tnoremap <Esc> <C-\><C-n>
-
-
-
-" re-center screen as we move through search items consistently
-" nnoremap n nzz
-" nnoremap N Nzz
 " --------------------------------------------------------------------------------
 " COLORS AND THEMES AND FORMATTING OH MY
 " --------------------------------------------------------------------------------
-set termguicolors
 let g:gruvbox_italic=1 " seeing if we can get italics correctly
 
 let g:gruvbox_contrast_dark='soft'
@@ -152,26 +85,6 @@ colorscheme gruvbox
 " colorscheme onedark
 
 
-
-" --------------------------------------------------------------------------------
-" ALE - File linting
-" --------------------------------------------------------------------------------
-let g:ale_sign_column_always = 1 " always show the gutter!
-let g:airline#extensions#ale#enabled = 1 " integrate with airline
-
-nmap <Leader>af <Plug>(ale_fix)
-nmap <silent> <Leader>ap <Plug>(ale_previous_wrap)
-nmap <silent> <Leader>an <Plug>(ale_next_wrap)
-" add default fixer for ALE with javascript
-" 'prettier_eslint'
-let g:ale_fixers = {
-\   'javascript': [
-\       'eslint',
-\   ],
-\   'ruby': [
-\       'rubocop',
-\   ],
-\}
 
 " --------------------------------------------------------------------------------
 " FILE BROWSING
