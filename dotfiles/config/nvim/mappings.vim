@@ -6,6 +6,8 @@
 let mapleader=","
 " since , is the reverse of ; remap it so we can use it if needed
 nnoremap \ ,
+" try to remap the escape key in insert mode
+inoremap jk <esc>
 
 " Thanks to Steve Losh for this liberating tip - regex better when searching
 " See http://stevelosh.com/blog/2010/09/coming-home-to-vim
@@ -27,10 +29,6 @@ nmap <silent> <leader>ve :e $MYVIMRC<CR>
 nmap <silent> <leader>vr :so $MYVIMRC<CR>
 nmap <silent> <leader>ss :mksession! .vim_session<CR>
 nmap <silent> <leader>sl :source .vim_session<CR>
-
-" https://github.com/ruanyl/vim-gh-line
-let g:gh_line_map = '<leader>gh'
-let g:gh_line_blame_map = '<leader>gb'
 
 
 
@@ -57,19 +55,19 @@ noremap <down>  <C-W>-
 noremap <left>  3<C-W><
 noremap <right> 3<C-W>>
 
+" --------------------------------------------------------------------------------
+" PLUGIN MAPPINGS
+
 " ctrl-p to open fzf files browser
 nnoremap <C-p> :GFiles<CR>
 
 " ctrl-f to find within files using ag
-nnoremap <C-f> :Rg<CR>
+nnoremap <C-f> :Rg<Space>
 
-" use tab to move between buffers
-" nnoremap <Tab> :bnext<CR>
-" nnoremap <S-Tab> :bprevious<CR>
+" https://github.com/ruanyl/vim-gh-line
+let g:gh_line_map = '<leader>gh'
+let g:gh_line_blame_map = '<leader>gb'
 
-
-" try to remap the escape key in insert mode
-inoremap jk <esc>
 
 
 " --------------------------------------------------------------------------------

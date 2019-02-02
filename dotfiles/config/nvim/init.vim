@@ -53,9 +53,6 @@ set completeopt=longest,menuone " this always shows the suggestion menu even if 
 " au FocusGained,BufEnter * :silent! !
 
 
-" treat es6 files like javascript files
-au BufNewFile,BufRead *.es6 set filetype=javascript
-autocmd BufWritePost,FileWritePost *.es6 :silent !babel <afile> -o <afile>:r.js
 
 " FOLDING - not working right yet, don't want it by default
 set foldmethod=syntax " this should allow folding
@@ -69,6 +66,7 @@ set iskeyword+=-
 
 
 source ~/.config/nvim/mappings.vim
+source ~/.config/nvim/autocmd.vim
 
 " load all of the plugin confi stuff
 for f in split(glob('~/.config/nvim/config/plugins/*.vim'), '\n')
