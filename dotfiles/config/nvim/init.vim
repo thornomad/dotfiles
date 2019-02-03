@@ -65,11 +65,14 @@ set iskeyword+=-
 
 
 
+" --------------------------------------------------------------------------------
+" SOURCE ADDITIONAL FILES
+" --------------------------------------------------------------------------------
 source ~/.config/nvim/mappings.vim
 source ~/.config/nvim/autocmd.vim
 
 " load all of the plugin confi stuff
-for f in split(glob('~/.config/nvim/config/plugins/*.vim'), '\n')
+for f in split(glob('~/.config/nvim/plugins/*.vim'), '\n')
   exe 'source' f
 endfor
 
@@ -101,18 +104,4 @@ set rtp+=/usr/local/opt/fzf
 " --------------------------------------------------------------------------------
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_section_y = ''
-
-" --------------------------------------------------------------------------------
-" FIX TRAILING WHITESPACE ON SAVE
-" --------------------------------------------------------------------------------
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-
-" autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
 

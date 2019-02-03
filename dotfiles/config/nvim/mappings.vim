@@ -6,8 +6,19 @@
 let mapleader=","
 " since , is the reverse of ; remap it so we can use it if needed
 nnoremap \ ,
-" try to remap the escape key in insert mode
-inoremap jk <esc>
+
+" use just CTRL+J,K,L,H to switch windows
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" change the current screen size using the arrow keys
+" since we don't use arrow keys anyway
+noremap <up>    <C-W>+
+noremap <down>  <C-W>-
+noremap <left>  3<C-W><
+noremap <right> 3<C-W>>
 
 " Thanks to Steve Losh for this liberating tip - regex better when searching
 " See http://stevelosh.com/blog/2010/09/coming-home-to-vim
@@ -30,7 +41,19 @@ nmap <silent> <leader>vr :so $MYVIMRC<CR>
 nmap <silent> <leader>ss :mksession! .vim_session<CR>
 nmap <silent> <leader>sl :source .vim_session<CR>
 
+nmap <leader>af <Plug>(ale_fix)
+nmap <silent> <Leader>ap <Plug>(ale_previous_wrap)
+nmap <silent> <Leader>an <Plug>(ale_next_wrap)
+" --------------------------------------------------------------------------------
+" INSERT MODE REMAPPING
+"
 
+" try to remap the escape key in insert mode
+inoremap jk <esc>
+
+" --------------------------------------------------------------------------------
+" EX MODE REMAPPING
+"
 
 " map upppercase commands I mistype to their lowercase counterparts
 :command! -bar -bang Q quit<bang>
@@ -42,18 +65,6 @@ nmap <silent> <leader>sl :source .vim_session<CR>
 
 
 
-" use just CTRL+J,K,L,H to switch windows
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" change the current screen size using the arrow keys
-" since we don't use arrow keys anyway
-noremap <up>    <C-W>+
-noremap <down>  <C-W>-
-noremap <left>  3<C-W><
-noremap <right> 3<C-W>>
 
 " --------------------------------------------------------------------------------
 " PLUGIN MAPPINGS
@@ -68,7 +79,11 @@ nnoremap <C-f> :Rg<Space>
 let g:gh_line_map = '<leader>gh'
 let g:gh_line_blame_map = '<leader>gb'
 
+" --------------------------------------------------------------------------------
+" VISUAL MODE REMAPPING
 
+" use slected text as search string
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 
 " --------------------------------------------------------------------------------
 " TERMINAL REMAPPING
