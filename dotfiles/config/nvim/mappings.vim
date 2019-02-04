@@ -71,6 +71,8 @@ inoremap jk <esc>
 
 " ctrl-p to open fzf files browser
 nnoremap <C-p> :GFiles<CR>
+nnoremap <leader><C-p> :FZF<CR>
+nnoremap <leader>b :Buffers<CR>
 
 " ctrl-f to find within files using ag
 nnoremap <C-f> :Rg<Space>
