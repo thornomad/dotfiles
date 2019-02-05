@@ -32,6 +32,7 @@ set splitright                  " open splits to the right by default
 
 set showmatch                   " set show matching parenthesis
 set ignorecase                  " ignore case when searching
+set infercase                   " adjust case based on context when searching
 set smartcase                   " ignore case if search pattern is all lowercase, case-sensitive otherwise
 set nobackup                    " do not keep backups
 set noswapfile                  " no swap files please

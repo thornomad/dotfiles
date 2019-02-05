@@ -44,6 +44,9 @@ nmap <silent> <leader>sl :source .vim_session<CR>
 nmap <leader>af <Plug>(ale_fix)
 nmap <silent> <Leader>ap <Plug>(ale_previous_wrap)
 nmap <silent> <Leader>an <Plug>(ale_next_wrap)
+
+" ,cjs = copy es6 file transpiled output to clipboard
+nmap <leader>cjs :!babel % <bar> pbcopy<CR>
 " --------------------------------------------------------------------------------
 " INSERT MODE REMAPPING
 "

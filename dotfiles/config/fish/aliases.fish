@@ -7,6 +7,7 @@ alias vim nvim
 alias cdhive 'cd ~/Documents/linguabee/linguabee-hive; lb.chruby'
 alias cdapi 'cd ~/Documents/linguabee/linguabee-api; lb.chruby'
 alias cdapp 'cd ~/Documents/linguabee/linguabee-app; lb.chruby'
+alias cdumass 'cd ~/Documents/ummmc-babel'
 
 alias gfhs 'git flow hotfix start'
 alias gfhf 'git flow hotfix finish -n'
