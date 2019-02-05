@@ -31,3 +31,9 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-rails"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-rails
 	url = https://github.com/tpope/vim-rails.git
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gutentags"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gutentags
+	url = https://github.com/ludovicchabant/vim-gutentags.git
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/deoplete.nvim"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/deoplete.nvim
+	url = https://github.com/Shougo/deoplete.nvim.git
