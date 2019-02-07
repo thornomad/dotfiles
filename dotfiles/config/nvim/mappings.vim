@@ -47,6 +47,7 @@ nmap <silent> <Leader>an <Plug>(ale_next_wrap)
 
 " ,cjs = copy es6 file transpiled output to clipboard
 nmap <leader>cjs :!babel % <bar> pbcopy<CR>
+nmap <leader>lm :!lb.migrate<CR>
 " --------------------------------------------------------------------------------
 " INSERT MODE REMAPPING
 "
@@ -83,7 +84,12 @@ nnoremap <C-f> :Rg<Space>
 " https://github.com/ruanyl/vim-gh-line
 let g:gh_line_map = '<leader>gh'
 let g:gh_line_blame_map = '<leader>gb'
+nnoremap <silent> <leader>gc :Gcommit %<CR>
+nnoremap <silent> <leader>gs :G<CR>
 
+
+nnoremap <leader>jf :JunkfileOpen<CR>
+nnoremap <leader>jfs :JunkfileOpen<CR>sql<CR>
 " --------------------------------------------------------------------------------
 " VISUAL MODE REMAPPING
 

@@ -152,6 +152,11 @@ function lb.update_db
   lb.update_db.local_copy
 end
 
+function lb.update_db.journal
+  lb.update_db.journal.download_only
+  lb.update_db.journal.local_copy
+end
+
 function lb.update_db.download_only
   cd ~/Documents/linguabee/linguabee-api
   lb.chruby
@@ -159,25 +164,24 @@ function lb.update_db.download_only
   curl -o latest.dump (/usr/local/bin/heroku pg:backups:url -a api-linguabee)
 end
 
-function lb.update_db.journal
+function lb.update_db.journal.download_only
   cd ~/Documents/linguabee/linguabee-api
   lb.chruby
   /usr/local/bin/heroku pg:backups:capture postgresql-shallow-35928 -a api-linguabee
   curl -o latest_journal.dump (/usr/local/bin/heroku pg:backups:url -a api-linguabee)
-  lb.update_db.journal.local_copy
 end
 
 function lb.update_db.local_copy
   psql linguabee_api_development -c "drop schema public cascade; create schema public;"
   pg_restore --verbose --clean --no-acl --no-owner -h localhost -U damon -d linguabee_api_development latest.dump
-  bundle exec rake db:mask_emails
+  bundle exec rake "db:mask_emails[master]"
   bundle exec rake db:seed:base
 end
 
 function lb.update_db.journal.local_copy
   psql linguabee_journal_development -c "drop schema public cascade; create schema public;"
   pg_restore --verbose --clean --no-acl --no-owner -h localhost -U damon -d linguabee_journal_development latest_journal.dump
-  bundle exec rake db:mask_emails
+  bundle exec rake "db:mask_emails[journal]"
 end
 
 function ffmpeg.videocopy
