@@ -86,6 +86,17 @@ let g:gh_line_map = '<leader>gh'
 let g:gh_line_blame_map = '<leader>gb'
 nnoremap <silent> <leader>gc :Gcommit %<CR>
 nnoremap <silent> <leader>gs :G<CR>
+nnoremap <leader>gco :Gina checkout<SPACE>
+
+nnoremap <leader>gu :Gina pull<CR>
+" nnoremap <leader>ga :Gina add %:p<CR>
+" nnoremap <nowait><leader>gs :Gina status<CR>
+" nnoremap <leader>gc :Gina commit -q -v<CR>
+" nnoremap <leader>gp :Gina push<CR>
+" nnoremap <leader>gb ::Gina blame --opener=tabedit --format="%au - %su%=%ti%ma%in" --width=75<CR>
+nnoremap <leader>gbr :Gina branch -a --opener=split<CR>
+" nnoremap <leader>gfhs :<C-u>Gina flow hotfix start<SPACE>
+" nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish -n<SPACE>
 
 
 nnoremap <leader>jf :JunkfileOpen<CR>
