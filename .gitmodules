@@ -43,3 +43,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/junkfile.vim"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/junkfile.vim
 	url = https://github.com/Shougo/junkfile.vim.git
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/gina.vim"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/gina.vim
+	url = https://github.com/lambdalisue/gina.vim.git
