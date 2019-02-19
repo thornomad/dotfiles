@@ -88,16 +88,17 @@ nnoremap <silent> <leader>gc :Gcommit %<CR>
 nnoremap <silent> <leader>gs :G<CR>
 nnoremap <leader>gco :Gina checkout<SPACE>
 
-nnoremap <leader>gu :Gina pull<CR>
+nnoremap <leader>gp :Gina pull<CR>
+nnoremap <leader>gu :Gina push<CR>
+" TODO - have this close the file when buffer is chosen
+nnoremap <leader>gbr :Gina branch -a --opener=split<CR>
+nnoremap <leader>gfhs :<C-u>Gina flow hotfix start<SPACE>
+nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish -n<SPACE>
+
 " nnoremap <leader>ga :Gina add %:p<CR>
 " nnoremap <nowait><leader>gs :Gina status<CR>
 " nnoremap <leader>gc :Gina commit -q -v<CR>
-" nnoremap <leader>gp :Gina push<CR>
 " nnoremap <leader>gb ::Gina blame --opener=tabedit --format="%au - %su%=%ti%ma%in" --width=75<CR>
-nnoremap <leader>gbr :Gina branch -a --opener=split<CR>
-" nnoremap <leader>gfhs :<C-u>Gina flow hotfix start<SPACE>
-" nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish -n<SPACE>
-
 
 nnoremap <leader>jf :JunkfileOpen<CR>
 nnoremap <leader>jfs :JunkfileOpen<CR>sql<CR>
@@ -112,6 +113,10 @@ vnoremap <C-f> \V<C-r>=escape(@",'/\')<CR><CR>
 " TERMINAL REMAPPING
 
 " use esc to leave terminal mode
-tnoremap <Esc> <C-\><C-n>
+" tnoremap <Esc> <C-\><C-n>
+" if has("nvim")
+"   au TermOpen * tnoremap <Esc> <c-\><c-n>
+"   au FileType fzf tunmap <Esc>
+" endif
 
 
