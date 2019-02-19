@@ -98,6 +98,7 @@ nnoremap <leader>gp :Gina pull<CR>
 nnoremap <leader>gu :Gina push<CR>
 
 " TODO - have this close the file when buffer is chosen
+
 nnoremap <leader>gbr :Gina branch -a --opener=split<CR>
 nnoremap <leader>gfhs :<C-u>Gina flow hotfix start<SPACE>
 nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish -n<SPACE>
@@ -117,7 +118,6 @@ nnoremap <leader>jfs :JunkfileOpen<CR>sql<CR>
 
 " use slected text as search string
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
-vnoremap <C-f> \V<C-r>=escape(@",'/\')<CR><CR>
 
 " --------------------------------------------------------------------------------
 " TERMINAL REMAPPING
