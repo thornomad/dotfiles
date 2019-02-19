@@ -220,8 +220,8 @@ end
 function nvim.plugin.remove
   set dir (pwd)
   cd ~/Documents/dotfiles
-  git submodule deinit dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
-  git rm -r dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
+  git submodule deinit -f dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
+  git rm -rf dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
   rm -Rf .git/modules/dotfiles/local/share/nvim/site/pack/thornomad/start/$argv[1]
   cd $dir
 end

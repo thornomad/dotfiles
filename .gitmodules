@@ -37,9 +37,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/deoplete.nvim"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/deoplete.nvim
 	url = https://github.com/Shougo/deoplete.nvim.git
-[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/dbext.vim"]
-	path = dotfiles/local/share/nvim/site/pack/thornomad/start/dbext.vim
-	url = https://github.com/vim-scripts/dbext.vim.git
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/junkfile.vim"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/junkfile.vim
 	url = https://github.com/Shougo/junkfile.vim.git
