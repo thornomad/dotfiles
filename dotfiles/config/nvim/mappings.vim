@@ -81,19 +81,29 @@ nnoremap <leader>b :Buffers<CR>
 " ctrl-f to find within files using ag
 nnoremap <C-f> :Rg<Space>
 
+" --------------------------------------------------------------------------------
+" GIT RELATED MAPPINGS
+
 " https://github.com/ruanyl/vim-gh-line
 let g:gh_line_map = '<leader>gh'
 let g:gh_line_blame_map = '<leader>gb'
+
+
 nnoremap <silent> <leader>gc :Gcommit %<CR>
 nnoremap <silent> <leader>gs :G<CR>
-nnoremap <leader>gco :Gina checkout<SPACE>
+
+" nnoremap <leader>gco :Gina checkout<SPACE>
 
 nnoremap <leader>gp :Gina pull<CR>
 nnoremap <leader>gu :Gina push<CR>
+
 " TODO - have this close the file when buffer is chosen
 nnoremap <leader>gbr :Gina branch -a --opener=split<CR>
 nnoremap <leader>gfhs :<C-u>Gina flow hotfix start<SPACE>
 nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish -n<SPACE>
+nnoremap <leader>gffs :<C-u>Gina flow feature start<SPACE>
+nnoremap <leader>gfff :<C-u>Gina flow feature finish<SPACE>
+
 
 " nnoremap <leader>ga :Gina add %:p<CR>
 " nnoremap <nowait><leader>gs :Gina status<CR>
