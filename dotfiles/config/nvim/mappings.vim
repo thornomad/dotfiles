@@ -95,6 +95,7 @@ nnoremap <leader>jfs :JunkfileOpen<CR>sql<CR>
 
 " use slected text as search string
 vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
+vnoremap <C-f> \V<C-r>=escape(@",'/\')<CR><CR>
 
 " --------------------------------------------------------------------------------
 " TERMINAL REMAPPING
