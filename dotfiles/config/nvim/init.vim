@@ -100,9 +100,3 @@ autocmd FileType netrw setl bufhidden=delete
 
 set rtp+=/usr/local/opt/fzf
 
-" --------------------------------------------------------------------------------
-" AIRLINE - settings
-" --------------------------------------------------------------------------------
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_section_y = ''
-
