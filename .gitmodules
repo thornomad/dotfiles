@@ -46,3 +46,4 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/dbext.vim"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/dbext.vim
 	url = https://github.com/chadwtaylor/dbext.vim
+  ignore = dirty
