@@ -47,3 +47,6 @@
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/dbext.vim
 	url = https://github.com/chadwtaylor/dbext.vim
   ignore = dirty
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/ultisnips"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/ultisnips
+	url = https://github.com/SirVer/ultisnips
