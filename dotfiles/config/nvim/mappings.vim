@@ -32,6 +32,7 @@ nnoremap <leader><leader> :noh<cr>
 " close buffer without losing the split (or try not to)
 nnoremap <silent> <leader>q :bp<bar>vsp<bar>bn<bar>bd<CR>
 nnoremap <silent> <leader>rm :call delete(expand('%'))<bar>bp<bar>vsp<bar>bn<bar>bdelete!<CR>
+nnoremap <leader>sa :saveas %:h/
 
 nnoremap <silent> <leader><Tab> :bnext<CR>
 nnoremap <silent> <leader><S-Tab> :bprevious<CR>
