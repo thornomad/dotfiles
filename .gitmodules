@@ -47,3 +47,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/ultisnips"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/ultisnips
 	url = https://github.com/SirVer/ultisnips
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/targets.vim"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/targets.vim
+	url = https://github.com/wellle/targets.vim
