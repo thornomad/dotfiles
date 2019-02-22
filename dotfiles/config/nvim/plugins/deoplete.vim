@@ -1,5 +1,6 @@
 " --------------------------------------------------------------------------------
 " DEOPLETE
+" See: after/plugin/deoplete.vim as well
 " --------------------------------------------------------------------------------
 
 " turns on deoplete
@@ -21,14 +22,4 @@ function! s:check_back_space() abort "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
-
-augroup DeopleteOptions
-  autocmd!
-  autocmd VimEnter * call deoplete#custom#source('ultisnips', 'rank', 1000)
-"   this is not working yet
-"   autocmd VimEnter *
-"    \ if exists('*deoplete#custom#source') |
-"    \   call deoplete#custom#source('ultisnips', 'rank', 1000) |
-"    \ endif
-augroup END
 
