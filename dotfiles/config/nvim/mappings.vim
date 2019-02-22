@@ -71,9 +71,24 @@ inoremap jk <esc>
 
 
 
+" --------------------------------------------------------------------------------
+" DEOPLETE
+" --------------------------------------------------------------------------------
+
+" use <C-Space> to trigger deoplete
+inoremap <silent><expr> <C-Space>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
 
 " --------------------------------------------------------------------------------
-" PLUGIN MAPPINGS
+" FZF
+" --------------------------------------------------------------------------------
 
 " ctrl-p to open fzf files browser
 nnoremap <C-p> :GFiles<CR>
@@ -83,8 +98,10 @@ nnoremap <leader>b :Buffers<CR>
 " ctrl-f to find within files using ag
 nnoremap <C-f> :Rg<Space>
 
+
 " --------------------------------------------------------------------------------
 " GIT RELATED MAPPINGS
+" --------------------------------------------------------------------------------
 
 " https://github.com/ruanyl/vim-gh-line
 let g:gh_line_map = '<leader>gl'

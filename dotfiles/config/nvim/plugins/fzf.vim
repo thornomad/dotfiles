@@ -2,7 +2,7 @@
 " FZF - settings
 " see: https://github.com/junegunn/fzf.vim
 " --------------------------------------------------------------------------------
-let g:fzf_action = { 'ctrl-l': 'vsplit' }
+let g:fzf_action = { 'ctrl-l': 'vsplit', 'ctrl-j': 'split' }
 
 " Default fzf layout
 " - down / up / left / right

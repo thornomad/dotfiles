@@ -77,6 +77,10 @@ for f in split(glob('~/.config/nvim/plugins/*.vim'), '\n')
   exe 'source' f
 endfor
 
+
+" enable deoplete (see after/plugin for more settings)
+let g:deoplete#enable_at_startup = 1
+
 " --------------------------------------------------------------------------------
 " COLORS AND THEMES AND FORMATTING OH MY
 " --------------------------------------------------------------------------------
