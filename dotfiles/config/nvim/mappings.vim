@@ -8,15 +8,15 @@ let mapleader=","
 nnoremap \ ,
 
 " use just CTRL+J,K,L,H to switch windows
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " change the current screen size using the arrow keys
 " since we don't use arrow keys anyway
-noremap <up>    <C-W>+
-noremap <down>  <C-W>-
+noremap <up>    2<C-W>+
+noremap <down>  2<C-W>-
 noremap <left>  3<C-W><
 noremap <right> 3<C-W>>
 
@@ -26,7 +26,7 @@ noremap <right> 3<C-W>>
 " vnoremap / /\v
 
 " turn off highlighting
-nnoremap <leader><leader> :noh<cr>
+nnoremap <leader><Space> :noh<cr>
 
 " relearn to quit and save/quit without closing buffers
 " close buffer without losing the split (or try not to)
@@ -44,8 +44,8 @@ nmap <silent> <leader>ss :mksession! .vim_session<CR>
 nmap <silent> <leader>sl :source .vim_session<CR>
 
 nmap <leader>af <Plug>(ale_fix)
-nmap <silent> <Leader>ap <Plug>(ale_previous_wrap)
-nmap <silent> <Leader>an <Plug>(ale_next_wrap)
+nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
+nmap <silent> <leader>an <Plug>(ale_next_wrap)
 
 " ,cjs = copy es6 file transpiled output to clipboard
 nmap <leader>cjs :!babel % <bar> pbcopy<CR>
@@ -87,12 +87,14 @@ nnoremap <C-f> :Rg<Space>
 " GIT RELATED MAPPINGS
 
 " https://github.com/ruanyl/vim-gh-line
-let g:gh_line_map = '<leader>gh'
-let g:gh_line_blame_map = '<leader>gb'
-
+let g:gh_line_map = '<leader>gl'
+let g:gh_line_blame_map = '<leader>glb'
+" DOES NOT WORK!
+" let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
 nnoremap <silent> <leader>gc :Gcommit %<CR>
 nnoremap <silent> <leader>gs :G<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
 
 " nnoremap <leader>gco :Gina checkout<SPACE>
 
@@ -107,6 +109,22 @@ nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish -n<SPACE>
 nnoremap <leader>gffs :<C-u>Gina flow feature start<SPACE>
 nnoremap <leader>gfff :<C-u>Gina flow feature finish<SPACE>
 
+
+" GIT GUTTER
+let g:gitgutter_map_keys = 0
+nmap <leader>ghs <Plug>GitGutterStageHunk
+nmap <leader>ghu <Plug>GitGutterUndoHunk
+" nmap <leader>ghn <Plug>GitGutterNextHunk
+" nmap <leader>ghp <Plug>GitGutterPrevHunk
+nmap <leader>ghv <Plug>GitGutterPreviewHunk
+
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+
+omap ih <Plug>GitGutterTextObjectInnerPending
+omap ah <Plug>GitGutterTextObjectOuterPending
+xmap ih <Plug>GitGutterTextObjectInnerVisual
+xmap ah <Plug>GitGutterTextObjectOuterVisual
 
 " nnoremap <leader>ga :Gina add %:p<CR>
 " nnoremap <nowait><leader>gs :Gina status<CR>
