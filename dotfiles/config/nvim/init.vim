@@ -65,6 +65,12 @@ set foldlevelstart=99
 set iskeyword+=-
 
 
+" recommendation to use `sh` instead of fish with vim
+" for better POSIX support
+if &shell =~# 'fish$'
+  set shell=sh
+endif
+
 
 " --------------------------------------------------------------------------------
 " SOURCE ADDITIONAL FILES
