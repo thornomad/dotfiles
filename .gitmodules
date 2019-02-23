@@ -53,3 +53,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-repeat"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-fish"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-fish
+	url = https://github.com/dag/vim-fish
