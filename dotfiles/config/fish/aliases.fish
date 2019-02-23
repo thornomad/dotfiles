@@ -13,6 +13,25 @@ alias gfhs 'git flow hotfix start'
 alias gfhf 'git flow hotfix finish -n'
 alias gs 'git status'
 
+# git.finish-feature v1.1.1 "Added some new feature [tag message]"
+# https://github.com/petervanderdoes/gitflow-avh/wiki/Reference:-git-flow-release
+function git.finish-feature
+  set GIT_FEATURE_TAG $argv[1]
+  set GIT_TAG_MESSAGE $argv[2]
+  set GIT_FEATURE_BRANCH (git rev-parse --abbrev-ref HEAD | cut -d '/' -f2)
+  echo "This will complete feature/$GIT_FEATURE_BRANCH and release it with tag: $GIT_FEATURE_TAG"
+  echo "It will push everything as well to master and develop so ... you need to be ready!"
+  echo "Make sure all branches are pulled and merged/rebased before you do this."
+
+  if read_confirm
+    git flow feature finish $GIT_FEATURE_BRANCH
+    git flow release start $GIT_FEATURE_TAG
+    git flow release finish --message "$GIT_TAG_MESSAGE" --push $GIT_FEATURE_TAG
+
+    echo "All done.  Nice job."
+  end
+end
+
 alias be 'bundle exec'
 
 alias lb.chruby 'chruby (head -1 .ruby-version)'

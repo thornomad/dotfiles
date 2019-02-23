@@ -40,6 +40,19 @@ end
 source /usr/local/share/chruby/chruby.fish
 # source /usr/local/share/chruby/auto.fish
 
+function read_confirm
+  while true
+    read -l -P 'Do you want to continue? [y/N] ' confirm
+
+    switch $confirm
+      case Y y
+        return 0
+      case '' N n
+        return 1
+    end
+  end
+end
+
 # chruby ruby-2.3.0
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 set -g fish_user_paths "/usr/local/opt/postgresql@10/bin" $fish_user_paths
