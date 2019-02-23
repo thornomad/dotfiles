@@ -56,3 +56,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-fish"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-fish
 	url = https://github.com/dag/vim-fish
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-endwise"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-endwise
+	url = https://github.com/tpope/vim-endwise
