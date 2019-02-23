@@ -104,14 +104,15 @@ nnoremap <C-f> :Rg<Space>
 " --------------------------------------------------------------------------------
 
 " https://github.com/ruanyl/vim-gh-line
-let g:gh_line_map = '<leader>gl'
-let g:gh_line_blame_map = '<leader>glb'
+let g:gh_line_map = '<leader>ggl'
+let g:gh_line_blame_map = '<leader>ggb'
 " DOES NOT WORK!
 " let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
 nnoremap <silent> <leader>gc :Gcommit %<CR>
 nnoremap <silent> <leader>gs :G<CR>
 nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Gina log<CR>
 
 " nnoremap <leader>gco :Gina checkout<SPACE>
 
