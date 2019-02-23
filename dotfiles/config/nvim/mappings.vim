@@ -37,6 +37,13 @@ nnoremap <leader>sa :saveas %:h/
 nnoremap <silent> <leader><Tab> :bnext<CR>
 nnoremap <silent> <leader><S-Tab> :bprevious<CR>
 
+" quickly jump to the numbered tab
+nnoremap <silent> <leader>1 1gt
+nnoremap <silent> <leader>2 2gt
+nnoremap <silent> <leader>3 3gt
+nnoremap <silent> <leader>4 4gt
+nnoremap <silent> <leader>5 5gt
+
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ve :e $MYVIMRC<CR>
 nmap <silent> <leader>vr :so $MYVIMRC<CR>
@@ -122,10 +129,10 @@ nnoremap <leader>gu :Gina push<CR>
 " TODO - have this close the file when buffer is chosen
 
 nnoremap <leader>gbr :Gina branch -a --opener=split<CR>
-nnoremap <leader>gfhs :<C-u>Gina flow hotfix start<SPACE>
-nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish -n<SPACE>
-nnoremap <leader>gffs :<C-u>Gina flow feature start<SPACE>
-nnoremap <leader>gfff :<C-u>Gina flow feature finish<SPACE>
+nnoremap <leader>gfhs :<C-u>Gina flow hotfix start --fetch<SPACE>
+nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish --notag --push<SPACE>
+nnoremap <leader>gffs :<C-u>Gina flow feature start --fetch<SPACE>
+" nnoremap <leader>gfff :<C-u>Gina flow feature finish<SPACE>
 
 
 " GIT GUTTER
