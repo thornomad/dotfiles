@@ -33,6 +33,16 @@ snippet "(\S+)\.anyd" "<elements>.any? do |<element>| <block> end" r
 end
 endsnippet
 
+snippet "(\S+)\.all" "<elements>.all? { |<element>| true }" r
+`!p snip.rv=match.group(1)`.all? { |${1:e}| $0 }
+endsnippet
+
+snippet "(\S+)\.alld" "<elements>.all? do |<element>| <block> end" r
+`!p snip.rv=match.group(1)`.all? do |${1:e}|
+	$0
+end
+endsnippet
+
 #
 # Snippets - from vim-snippets
 #
