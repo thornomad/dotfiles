@@ -30,7 +30,7 @@ nnoremap <leader><Space> :noh<cr>
 
 " relearn to quit and save/quit without closing buffers
 " close buffer without losing the split (or try not to)
-nnoremap <silent> <leader>q :bp<bar>vsp<bar>bn<bar>bd<CR>
+nnoremap <silent> <leader>w :bp<bar>vsp<bar>bn<bar>bd<CR>
 nnoremap <silent> <leader>rm :call delete(expand('%'))<bar>bp<bar>vsp<bar>bn<bar>bdelete!<CR>
 nnoremap <leader>sa :saveas %:h/
 
@@ -63,19 +63,6 @@ nmap <leader>lm :!lb.migrate<CR>
 
 " try to remap the escape key in insert mode
 inoremap jk <esc>
-
-" --------------------------------------------------------------------------------
-" EX MODE REMAPPING
-"
-
-" map upppercase commands I mistype to their lowercase counterparts
-:command! -bar -bang Q quit<bang>
-:command! -bar -bang W write<bang>
-:command! -nargs=* T split | terminal <args>
-:command! -nargs=* TV vsplit | terminal <args>
-":command! -nargs=* T vsplit | vertical resize 100 | terminal <args>
-" :command! -bar -bang X exit<bang>
-
 
 
 " --------------------------------------------------------------------------------
@@ -173,5 +160,20 @@ vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 "   au TermOpen * tnoremap <Esc> <c-\><c-n>
 "   au FileType fzf tunmap <Esc>
 " endif
+
+" --------------------------------------------------------------------------------
+" EX MAPPINGS
+" --------------------------------------------------------------------------------
+
+" close all buffers but the current one
+command! BufOnly silent! execute "%bd|e#|bd#"
+
+" map upppercase commands I mistype to their lowercase counterparts
+:command! -bar -bang Q quit<bang>
+:command! -bar -bang W write<bang>
+:command! -nargs=* T split | terminal <args>
+:command! -nargs=* TV vsplit | terminal <args>
+":command! -nargs=* T vsplit | vertical resize 100 | terminal <args>
+" :command! -bar -bang X exit<bang>
 
 
