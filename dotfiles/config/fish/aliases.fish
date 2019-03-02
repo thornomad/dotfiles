@@ -12,6 +12,7 @@ alias cdumass 'cd ~/Documents/ummmc-babel'
 alias gfhs 'git flow hotfix start'
 alias gfhf 'git flow hotfix finish -n'
 alias gs 'git status'
+alias gpa 'git co master; git pull; git co develop; git pull'
 
 # git.finish-feature v1.1.1 "Added some new feature [tag message]"
 # https://github.com/petervanderdoes/gitflow-avh/wiki/Reference:-git-flow-release
@@ -31,6 +32,25 @@ function git.finish-feature
     echo "All done.  Nice job."
   end
 end
+
+function git.pull
+  # check for clean branch
+  if test (count (git diff-index --quiet HEAD --)) -gt 0
+    echo "You have unstaged files with changes"
+  else if test (count (git ls-files --exclude-standard --others)) -gt 0
+    echo "You have untracked files, stage or stash them"
+  else
+    set GIT_BRANCH (git rev-parse --abbrev-ref HEAD)
+    git checkout master
+    git pull
+    git checkout develop
+    git pull
+    git checkout $GIT_BRANCH
+    echo "All done!"
+  end
+end
+
+
 
 alias be 'bundle exec'
 

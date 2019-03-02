@@ -7,7 +7,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 
 " show index of buffers
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+" let g:airline#extensions#tabline#buffer_idx_mode = 1
 
 let g:airline#extensions#tabline#formatter = 'mybuffer'
 let g:airline#extensions#tabline#tabnr_formatter = 'mytabline'

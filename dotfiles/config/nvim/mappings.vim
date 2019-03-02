@@ -57,12 +57,25 @@ nmap <silent> <leader>an <Plug>(ale_next_wrap)
 " ,cjs = copy es6 file transpiled output to clipboard
 nmap <leader>cjs :!babel % <bar> pbcopy<CR>
 nmap <leader>lm :!lb.migrate<CR>
+
+
+
+
+
 " --------------------------------------------------------------------------------
 " INSERT MODE REMAPPING
-"
+" --------------------------------------------------------------------------------
 
 " try to remap the escape key in insert mode
-inoremap jk <esc>
+" inoremap jk <esc>
+
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" use <down> for <C-n> so that you can keep typing even after you have moved
+" the curosor
+"inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
+"  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
+
 
 
 " --------------------------------------------------------------------------------
@@ -78,8 +91,14 @@ function! s:check_back_space() abort "{{{
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
+" deoplete#cancel_popup
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function() abort
+"   return deoplete#close_popup() . "\<CR>"
+" endfunction
 
 
+"
 " --------------------------------------------------------------------------------
 " FZF
 " --------------------------------------------------------------------------------
@@ -100,6 +119,7 @@ nnoremap <C-f> :Rg<Space>
 " https://github.com/ruanyl/vim-gh-line
 let g:gh_line_map = '<leader>ggl'
 let g:gh_line_blame_map = '<leader>ggb'
+
 " DOES NOT WORK!
 " let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 

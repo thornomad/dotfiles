@@ -2,46 +2,70 @@
 # and_raise(${1:exception})
 # endsnippet
 
-snippet con "context"
+snippet con "context - block"
 context 'when ${1:context}' do
   $0
 end
 endsnippet
 
-snippet des "describe"
+snippet des "describe - block"
 describe '${1:subject}' do
   $0
 end
 endsnippet
 
-# snippet dest "Describe_type"
-# describe ${1:Type} do
-#   $0
-# end
-# endsnippet
-#
-# snippet dests "Describe_type_string"
-# describe ${1:Type}, "${2:description}" do
-#   $0
-# end
-# endsnippet
-#
-# snippet ex "exactly" w
-# exactly(${1:n}).times
-# endsnippet
-#
-# # TODO: the middle tabstop on these next two should be $0, but UltiSnips
-# # doesn't handle this correctly yet
-# snippet its "it should"
-# it "should ${1:do something}"${2: do
-#   $3
-# end}
-# endsnippet
+snippet exp "expect"
+expect(${1:subject}).${2:to} ${3:eq} $0
+endsnippet
+
+snippet expr "expect { raise ... }.to raise_error(AppError, /ah/"
+expect { ${1:do_something()} }.${2:to} raise_error(${3:AppError}, /${4:foobar}/)
+endsnippet
 
 snippet it "it '' do"
 it '${1:does something}'${2: do
   $3
 end}
+endsnippet
+
+snippet iti "it { is_expected.to eq }"
+it { is_expected.to ${1:eq} ${2:0} }
+$0
+endsnippet
+
+snippet itin "it { is_expected.not_to eq }"
+it { is_expected.not_to ${1:eq} $2 }
+$0
+endsnippet
+
+snippet let "let"
+let(:${1:symbol}) { $2 }
+endsnippet
+
+snippet let! "let!"
+let!(:${1:symbol}) { $2 }
+endsnippet
+
+snippet letb "let block"
+let :${1:symbol} do
+  $2
+end
+$0
+endsnippet
+
+snippet letb! "let! block"
+let :${1:symbol} do
+  $2
+end
+$0
+endsnippet
+
+snippet sub "subject"
+subject { $1 }
+endsnippet
+
+snippet subj "subject"
+subject(:${1:subject}) { $2 }
 endsnippet
 
 # snippet matc "Matcher (Custom)"
@@ -333,43 +357,6 @@ endsnippet
 # twice
 # endsnippet
 
-snippet exp "expect"
-expect(${1:subject}).${2:to} ${3:eq} $0
-endsnippet
-
-snippet let "let"
-let(:${1:symbol}) { $2 }
-$0
-endsnippet
-
-snippet let! "let!"
-let!(:${1:symbol}) { $2 }
-$0
-endsnippet
-
-snippet letb "let block"
-let :${1:symbol} do
-  $2
-end
-$0
-endsnippet
-
-snippet letb! "let! block"
-let :${1:symbol} do
-  $2
-end
-$0
-endsnippet
-
-snippet sub "subject"
-subject { $1 }
-$0
-endsnippet
-
-snippet subj "subject"
-subject(:${1:subject}) { $2 }
-$0
-endsnippet
 
 # snippet exp "expect to"
 # expect do
