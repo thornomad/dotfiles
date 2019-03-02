@@ -63,3 +63,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-eunuch"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gitgutter"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
