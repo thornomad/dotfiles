@@ -20,9 +20,6 @@
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
   ignore = dirty
-[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gitgutter"]
-	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter.git
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gh-line"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-gh-line
 	url = https://github.com/ruanyl/vim-gh-line.git
