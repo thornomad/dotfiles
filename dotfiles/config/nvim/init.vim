@@ -41,6 +41,7 @@ set clipboard=unnamed           " use mac clipboard! same as unnamedplus on mac
 set mouse=a                     " enable mouse! gack
 set completeopt=longest,menuone " this always shows the suggestion menu even if there is only one suggestion
 
+set updatetime=100              " have git gutter update faster
 "
 " Save whenever switching windows or leaving vim. This is useful when running
 " the tests inside vim without having to save all files first.

@@ -1,4 +1,4 @@
-snippet cl "console.log(...)" b
+snippet log "console.log(...)" b
 console.log($0);
 endsnippet
 
@@ -6,4 +6,19 @@ snippet if "if() { ... ]"
 if (${1:true}) {
   $0
 }
+endsnippet
+
+snippet "(\S+)\.find" ".find((e)=>{ ... })" r
+`!p snip.rv=match.group(1)`.find(${1:e} => $0 );
+endsnippet
+snippet "(\S+)\.findb" ".find((e)=>{ ... })" r
+`!p snip.rv=match.group(1)`.find((${1:e}) => {
+	$0
+});
+endsnippet
+
+snippet "(\S+)\.map" ".map((e)=>{ ... })" r
+`!p snip.rv=match.group(1)`.map((${1:e}) => {
+	$0
+});
 endsnippet
