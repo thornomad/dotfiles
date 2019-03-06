@@ -4,6 +4,7 @@ alias vim nvim
 
 
 
+alias cddot 'cd ~/Documents/dotfiles'
 alias cdhive 'cd ~/Documents/linguabee/linguabee-hive; lb.chruby'
 alias cdapi 'cd ~/Documents/linguabee/linguabee-api; lb.chruby'
 alias cdapp 'cd ~/Documents/linguabee/linguabee-app; lb.chruby'
