@@ -27,7 +27,7 @@ snippet "(\S+)\.any" "<elements>.any? { |<element>| true }" r
 `!p snip.rv=match.group(1)`.any? { |${1:e}| $0 }
 endsnippet
 
-snippet "(\S+)\.anyd" "<elements>.any? do |<element>| <block> end" r
+snippet "(\S+)\.anyb" "<elements>.any? do |<element>| <block> end" r
 `!p snip.rv=match.group(1)`.any? do |${1:e}|
 	$0
 end
@@ -37,7 +37,7 @@ snippet "(\S+)\.all" "<elements>.all? { |<element>| true }" r
 `!p snip.rv=match.group(1)`.all? { |${1:e}| $0 }
 endsnippet
 
-snippet "(\S+)\.alld" "<elements>.all? do |<element>| <block> end" r
+snippet "(\S+)\.allb" "<elements>.all? do |<element>| <block> end" r
 `!p snip.rv=match.group(1)`.all? do |${1:e}|
 	$0
 end
@@ -164,7 +164,7 @@ snippet "(\S+)\.ea" "<elements>.each do |<element>| <block> end" r
 `!p snip.rv=match.group(1)`.each { |${1:e}| $0 }
 endsnippet
 
-snippet "(\S+)\.ead" "<elements>.each do |<element>| <block> end" r
+snippet "(\S+)\.eab" "<elements>.each do |<element>| <block> end" r
 `!p snip.rv=match.group(1)`.each do |${1:e}|
 	$0
 end
@@ -180,7 +180,7 @@ snippet "Each_?s(lice)?" "<array>.each_slice(n) { |slice| <block> }" r
 ${1:elements}.each_slice(${2:2}) { |${3:slice}| $0 }
 endsnippet
 
-snippet "(\S+)\.Map" ".map { |<element>| <block> }" r
+snippet "(\S+)\.map" ".map { |<element>| <block> }" r
 `!p snip.rv=match.group(1)`.map { |${1:`!p
 element_name = match.group(1).lstrip('$@')
 ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
@@ -192,7 +192,7 @@ except:
 `}| $0 }
 endsnippet
 
-snippet "(\S+)\.map" ".map do |<element>| <block> end" r
+snippet "(\S+)\.mapb" ".map do |<element>| <block> end" r
 `!p snip.rv=match.group(1)`.map do |${1:`!p
 element_name = match.group(1).lstrip('$@')
 ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)

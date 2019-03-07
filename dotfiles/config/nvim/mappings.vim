@@ -7,6 +7,10 @@ let mapleader=","
 " since , is the reverse of ; remap it so we can use it if needed
 nnoremap \ ,
 
+" D deletes to end of line, I keep thinking Y will yank to end of line so now
+" it does
+nnoremap Y y$
+
 " use just CTRL+J,K,L,H to switch windows
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
