@@ -69,3 +69,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-unimpaired"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-abolish"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-abolish
+	url = https://github.com/tpope/vim-abolish
