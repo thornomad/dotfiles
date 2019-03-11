@@ -43,6 +43,31 @@ snippet "(\S+)\.allb" "<elements>.all? do |<element>| <block> end" r
 end
 endsnippet
 
+snippet "(\S+)\.find" ".select { |<item>| ... }" r
+`!p snip.rv=match.group(1)`.find { |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`}| $0 }
+endsnippet
+
+snippet "(\S+)\.findb" ".select do |<item>| <block> end" r
+`!p snip.rv=match.group(1)`.find do |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`}|
+	$0
+end
+endsnippet
 #
 # Snippets - from vim-snippets
 #
@@ -120,13 +145,29 @@ snippet "(\S+)\.reject" ".reject do <key>,<value>| <block> end" r
 end
 endsnippet
 
-snippet "(\S+)\.Select" ".select { |<item>| <block>}" r
-`!p snip.rv=match.group(1)`.select { |${1:item}| ${2:block} }
+snippet "(\S+)\.sel" ".select { |<item>| ... }" r
+`!p snip.rv=match.group(1)`.select { |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`}| $0 }
 endsnippet
 
-snippet "(\S+)\.select" ".select do |<item>| <block> end" r
-`!p snip.rv=match.group(1)`.select do |${1:item}|
-	${0:block}
+snippet "(\S+)\.selb" ".select do |<item>| <block> end" r
+`!p snip.rv=match.group(1)`.select do |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`}|
+	$0
 end
 endsnippet
 
@@ -160,12 +201,28 @@ snippet "(\S+)\.each_?val(ue)?" ".each_value do |<value>| <block> end" r
 end
 endsnippet
 
-snippet "(\S+)\.ea" "<elements>.each do |<element>| <block> end" r
-`!p snip.rv=match.group(1)`.each { |${1:e}| $0 }
+snippet "(\S+)\.ea" "<arr>.each { |<arr>| ... }" r
+`!p snip.rv=match.group(1)`.each { |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`}| $0 }
 endsnippet
 
 snippet "(\S+)\.eab" "<elements>.each do |<element>| <block> end" r
-`!p snip.rv=match.group(1)`.each do |${1:e}|
+`!p snip.rv=match.group(1)`.each do |${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`}|
 	$0
 end
 endsnippet

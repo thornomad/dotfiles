@@ -32,11 +32,11 @@ noremap <right> 3<C-W>>
 " turn off highlighting
 nnoremap <leader><Space> :noh<cr>
 
+
 " relearn to quit and save/quit without closing buffers
 " close buffer without losing the split (or try not to)
 nnoremap <silent> <leader>w :bp<bar>vsp<bar>bn<bar>bd<CR>
 nnoremap <silent> <leader>rm :call delete(expand('%'))<bar>bp<bar>vsp<bar>bn<bar>bdelete!<CR>
-nnoremap <leader>sa :saveas %:h/
 
 nnoremap <silent> <leader><Tab> :bnext<CR>
 nnoremap <silent> <leader><S-Tab> :bprevious<CR>
@@ -49,16 +49,20 @@ nnoremap <silent> <leader>4 4gt
 nnoremap <silent> <leader>5 5gt
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ve :e $MYVIMRC<CR>
-nmap <silent> <leader>vr :so $MYVIMRC<CR>
-nmap <silent> <leader>ss :mksession! .vim_session<CR>
+" select all
+nnoremap <leader>va <esc>gg0vG$<CR>
+nnoremap <silent> <leader>ve :e $MYVIMRC<CR>
+nnoremap <silent> <leader>vr :so $MYVIMRC<CR>
+
+nnoremap <silent> <leader>ss :mksession! .vim_session<CR>
+nnoremap <leader>sa :saveas %:h/
 nmap <silent> <leader>sl :source .vim_session<CR>
 
 nmap <leader>af <Plug>(ale_fix)
 nmap <silent> <leader>ap <Plug>(ale_previous_wrap)
 nmap <silent> <leader>an <Plug>(ale_next_wrap)
 
-" ,cjs = copy es6 file transpiled output to clipboard
+" ,cjs = copy es6 file transpiled output to clipboard - javascript babel
 nmap <leader>cjs :!babel % <bar> pbcopy<CR>
 nmap <leader>lm :!lb.migrate<CR>
 
