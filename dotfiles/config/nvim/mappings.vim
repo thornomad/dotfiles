@@ -11,6 +11,15 @@ nnoremap \ ,
 " it does
 nnoremap Y y$
 
+" use gn and gp to switch buffers: go right, go previous
+" remap gn and gp to <leader>gn/gp
+nnoremap <leader>gj gj
+nnoremap <leader>gk gk
+nnoremap <silent> gk :bnext<CR>
+nnoremap <silent> gj :bprev<CR>
+" nnoremap <leader>gp gp
+
+
 " use just CTRL+J,K,L,H to switch windows
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>

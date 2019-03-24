@@ -114,4 +114,4 @@ if executable("rg")
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-let g:ruby_default_path = '/Users/damon/.rubies/ruby-2.5.0/bin/ruby'
+" let g:ruby_default_path = '/Users/damon/.rubies/ruby-2.5.0/bin/ruby'
