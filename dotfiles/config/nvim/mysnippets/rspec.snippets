@@ -38,6 +38,16 @@ it { is_expected.not_to ${1:eq} $2 }
 $0
 endsnippet
 
+snippet its "its(:um) { is_expected.to eq 'um' }"
+its(:${1:symbol}) { is_expected.to ${2:eq} ${3:0} }
+$0
+endsnippet
+
+snippet itsn "its(:um) { is_expected.not_to eq 'um' }"
+its(:${1:symbol}) { is_expected.not_to ${2:eq} ${3:0} }
+$0
+endsnippet
+
 snippet let "let"
 let(:${1:symbol}) { $2 }
 endsnippet

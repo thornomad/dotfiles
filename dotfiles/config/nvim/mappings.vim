@@ -167,8 +167,8 @@ nmap <leader>ghu <Plug>GitGutterUndoHunk
 " nmap <leader>ghp <Plug>GitGutterPrevHunk
 nmap <leader>ghv <Plug>GitGutterPreviewHunk
 
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
+nmap ]h <Plug>GitGutterNextHunk zz
+nmap [h <Plug>GitGutterPrevHunk zz
 
 omap ih <Plug>GitGutterTextObjectInnerPending
 omap ah <Plug>GitGutterTextObjectOuterPending
