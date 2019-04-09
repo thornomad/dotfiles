@@ -3,7 +3,7 @@
 " --------------------------------------------------------------------------------
 
 " change the mapleader from \ to ,
-let mapleader=","
+let mapleader=" "
 " since , is the reverse of ; remap it so we can use it if needed
 nnoremap \ ,
 
@@ -201,15 +201,18 @@ vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
 " --------------------------------------------------------------------------------
 " EX MAPPINGS
 " --------------------------------------------------------------------------------
+command! -nargs=* Wrap set wrap linebreak nolist breakindent showbreak=->
+command Gstash execut "Gina stash -u"
+command Gpop execut "Gina stash pop"
 
 " close all buffers but the current one
-command! BufOnly silent! execute "%bd|e#|bd#"
+command BufOnly silent! execute "%bd|e#|bd#"
 
 " map upppercase commands I mistype to their lowercase counterparts
-:command! -bar -bang Q quit<bang>
-:command! -bar -bang W write<bang>
-:command! -nargs=* T split | terminal <args>
-:command! -nargs=* TV vsplit | terminal <args>
+command! -bar -bang Q quit<bang>
+command! -bar -bang W write<bang>
+command! -nargs=* T split | terminal <args>
+command! -nargs=* TV vsplit | terminal <args>
 ":command! -nargs=* T vsplit | vertical resize 100 | terminal <args>
 " :command! -bar -bang X exit<bang>
 
