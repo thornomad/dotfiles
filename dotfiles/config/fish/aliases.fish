@@ -47,6 +47,7 @@ function git.pull
     git checkout develop
     git pull
     git checkout $GIT_BRANCH
+    git pull
     echo "All done!"
   end
 end

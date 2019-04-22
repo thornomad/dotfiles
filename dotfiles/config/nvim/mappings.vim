@@ -47,8 +47,8 @@ nnoremap <leader><Space> :noh<cr>
 nnoremap <silent> <leader>w :bp<bar>vsp<bar>bn<bar>bd<CR>
 nnoremap <silent> <leader>rm :call delete(expand('%'))<bar>bp<bar>vsp<bar>bn<bar>bdelete!<CR>
 
-nnoremap <silent> <leader><Tab> :bnext<CR>
-nnoremap <silent> <leader><S-Tab> :bprevious<CR>
+" nnoremap <silent> <leader><Tab> :bnext<CR>
+" nnoremap <silent> <leader><S-Tab> :bprevious<CR>
 
 " quickly jump to the numbered tab
 nnoremap <silent> <leader>1 1gt
@@ -65,7 +65,8 @@ nnoremap <silent> <leader>vr :so $MYVIMRC<CR>
 
 nnoremap <silent> <leader>ss :mksession! .vim_session<CR>
 nnoremap <leader>sa :saveas %:h/
-nmap <silent> <leader>sl :source .vim_session<CR>
+nnoremap <silent> <leader>sl :source .vim_session<CR>
+nnoremap <silent> <leader>sw :bd Result<CR>
 
 nmap <leader>af <Plug>(ale_fix)
 nmap <silent> <leader>ap <Plug>(ale_previous_wrap)

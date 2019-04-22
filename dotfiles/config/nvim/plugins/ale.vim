@@ -10,6 +10,9 @@ let g:ale_fixers = {
 \   'javascript': [
 \       'eslint',
 \   ],
+\   'json': [
+\       'prettier',
+\   ],
 \   'ruby': [
 \       'rubocop',
 \   ],
