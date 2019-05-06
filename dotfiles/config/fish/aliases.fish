@@ -173,6 +173,11 @@ function lb.test.reset
   be rake db:seed:base RAILS_ENV=test
 end
 
+function lb.test.redo
+  cd ~/Documents/linguabee/linguabee-api
+  lb.chruby
+  be rake db:migrate:redo RAILS_ENV=test
+end
 #
 # if test (count $argv) -ne 1
 #   set -g db_name "linguabee_api_production"

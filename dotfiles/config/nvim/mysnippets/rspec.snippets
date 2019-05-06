@@ -2,7 +2,13 @@
 # and_raise(${1:exception})
 # endsnippet
 
-snippet con "context - block"
+snippet bef "before(:each) do ... end"
+before(${1::each}) do
+  $0
+end
+endsnippet
+
+snippet con "context 'when ...' do ... end"
 context 'when ${1:context}' do
   $0
 end
@@ -29,31 +35,27 @@ end}
 endsnippet
 
 snippet iti "it { is_expected.to eq }"
-it { is_expected.to ${1:eq} ${2:0} }
-$0
+it { is_expected.to ${1:eq }$0 }
 endsnippet
 
 snippet itin "it { is_expected.not_to eq }"
-it { is_expected.not_to ${1:eq} $2 }
-$0
+it { is_expected.not_to ${1:eq }$0 }
 endsnippet
 
 snippet its "its(:um) { is_expected.to eq 'um' }"
-its(:${1:symbol}) { is_expected.to ${2:eq} ${3:0} }
-$0
+its(:${1:symbol}) { is_expected.to ${2:eq} $0 }
 endsnippet
 
 snippet itsn "its(:um) { is_expected.not_to eq 'um' }"
-its(:${1:symbol}) { is_expected.not_to ${2:eq} ${3:0} }
-$0
+its(:${1:symbol}) { is_expected.not_to ${2:eq} $0 }
 endsnippet
 
 snippet let "let"
-let(:${1:symbol}) { $2 }
+let(:${1:symbol}) { $0 }
 endsnippet
 
 snippet let! "let!"
-let!(:${1:symbol}) { $2 }
+let!(:${1:symbol}) { $0 }
 endsnippet
 
 snippet letb "let block"
@@ -70,6 +72,22 @@ end
 $0
 endsnippet
 
+snippet raise "raise_error(...)"
+raise_error(${1:AppError}, ${2:/${3:msg}/})
+endsnippet
+
+snippet spec "sepcify { expect(...).to ... }"
+specify { expect(${1:subject}).to ${2:eq} $0 }
+endsnippet
+
+snippet specn "sepcify { expect(...).to ... }"
+specify { expect(${1:subject}).not_to ${2:eq} $0 }
+endsnippet
+
+snippet specr "sepcify { expect {...}.to raise_error() }"
+specify { expect { ${1:raise AppError.new} }.to raise_error(${2:AppError}, ${3:/${4:msg}/}) }
+endsnippet
+
 snippet sub "subject"
 subject { $1 }
 endsnippet
@@ -78,6 +96,17 @@ snippet subj "subject"
 subject(:${1:subject}) { $2 }
 endsnippet
 
+snippet subb "subject block"
+subject do
+  $0
+end
+endsnippet
+
+snippet subjb "subject(:name) block"
+subject ${1:subject} do
+  $0
+end
+endsnippet
 # snippet matc "Matcher (Custom)"
 # class ${1:ReverseTo}
 #   def initialize($3)
@@ -137,220 +166,6 @@ endsnippet
 # require 'spec_helper'
 #
 #
-# endsnippet
-#
-# snippet shbs "response_should_be_success"
-# response.should be_success
-# $0
-# endsnippet
-#
-# snippet shnbs "response_should_not_be_success"
-# response.should_not be_success
-# $0
-# endsnippet
-#
-# snippet conn "Set Controller for Spec"
-# controller_name :${1:controller}
-# endsnippet
-
-snippet bef "setup"
-before(${1::each}) do
-  $0
-end
-endsnippet
-
-# snippet sh= "should =="
-# ${1:target}.should == ${2:value}
-# $0
-# endsnippet
-#
-# snippet shm "should =~"
-# ${1:target}.should =~ /${2:regexp}/
-# $0
-# endsnippet
-#
-# snippet she "should eql"
-# ${1:target}.should eql(${2:value})
-# $0
-# endsnippet
-#
-# snippet shb "should_be"
-# ${1:target}.should be(${2:result})
-# $0
-# endsnippet
-#
-# snippet shbko "should_be_a_kind_of"
-# ${1:target}.should be_a_kind_of(${2:klass})
-# $0
-# endsnippet
-#
-# snippet shbio "should_be_an_instance_of"
-# ${1:target}.should be_instance_of(${2:klass})
-# $0
-# endsnippet
-#
-# snippet shbc "should_be_close"
-# ${1:target}.should be_close(${2:result}, ${3:tolerance})
-# $0
-# endsnippet
-#
-# snippet shbr "should_be_redirect"
-# response.should be_redirect
-# $0
-# endsnippet
-#
-# snippet she "should_equal"
-# ${1:target}.should equal(${2:value})
-# $0
-# endsnippet
-#
-# snippet shh "should_have"
-# ${1:target}.should have(${2:num}).${3:things}
-# $0
-# endsnippet
-#
-# snippet shhal "should_have_at_least"
-# ${1:target}.should have_at_least(${2:num}).${3:things}
-# $0
-# endsnippet
-#
-# snippet shham "should_have_at_most"
-# ${1:target}.should have_at_most(${2:num}).${3:things}
-# $0
-# endsnippet
-#
-# snippet shhr "should_have_records"
-# ${1:target}.should have(${2:x}).records
-# $0
-# endsnippet
-#
-# snippet shm "should_match"
-# ${1:target}.should match(/${2:regexp}/)
-# $0
-# endsnippet
-#
-# snippet shn= "should_not =="
-# ${1:target}.should_not == ${2:value}
-# $0
-# endsnippet
-#
-# snippet shnm "should_not =~"
-# ${1:target}.should_not =~ /${2:regexp}/
-# $0
-# endsnippet
-#
-# snippet shne "should_not eql"
-# ${1:target}.should_not eql(${2:value})
-# $0
-# endsnippet
-#
-# snippet shnb "should_not_be"
-# ${1:target}.should_not be(${2:result})
-# $0
-# endsnippet
-#
-# snippet shkof "should_not_be_a_kind_of"
-# ${1:target}.should_not be_a_kind_of(${2:klass})
-# $0
-# endsnippet
-#
-# snippet shbio "should_not_be_an_instance_of"
-# ${1:target}.should_not be_instance_of(${2:klass})
-# $0
-# endsnippet
-#
-# snippet shnbc "should_not_be_close"
-# ${1:target}.should_not be_close(${2:result}, ${3:tolerance})
-# $0
-# endsnippet
-#
-# snippet shnbr "should_not_be_redirect"
-# response.should_not be_redirect
-# $0
-# endsnippet
-#
-# snippet shne "should_not_equal"
-# ${1:target}.should_not equal(${2:value})
-# $0
-# endsnippet
-#
-# snippet shnm "should_not_match"
-# ${1:target}.should_not match(/${2:regexp}/)
-# $0
-# endsnippet
-#
-# snippet shnp "should_not_predicate"
-# ${1:target}.should_not ${2:be_${3:predicate}} $4
-# $0
-# endsnippet
-#
-# snippet shnre "should_not_raise"
-# lambda { $1 }.should_not raise_error(${2:error})
-# $0
-# endsnippet
-#
-# snippet shnr "should_not_receive"
-# ${1:mock}.should_not_receive(:${2:message})$3
-# $0
-#
-# endsnippet
-#
-# snippet shnrt "should_not_respond_to"
-# ${1:target}.should_not respond_to(:${2:sym})
-# $0
-# endsnippet
-#
-# snippet shns "should_not_satisfy"
-# ${1:target}.should_not satisfy { |obj| $2 }
-# $0
-# endsnippet
-#
-# snippet shnt "should_not_throw"
-# lambda { $1 }.should_not throw_symbol(:${2:symbol})
-# $0
-# endsnippet
-#
-# snippet shp "should_predicate"
-# ${1:target}.should ${2:be_${3:predicate}} $4
-# $0
-# endsnippet
-#
-# snippet shre "should_raise"
-# lambda { $1 }.should raise_error(${2:error})
-# $0
-# endsnippet
-#
-# snippet shr "should_receive"
-# ${1:mock}.should_receive(:${2:message})$3
-# endsnippet
-#
-# snippet wia "should_receive_with_args"
-# with(${1})$2
-# endsnippet
-#
-# snippet shrt "should_redirect_to"
-# response.should redirect_to(${1:url})
-# $0
-# endsnippet
-#
-# snippet shrt "should_render"
-# response.should render_template(:${1:template})
-# $0
-# endsnippet
-#
-# snippet shrt "should_respond_to"
-# ${1:target}.should respond_to(:${2:sym})
-# $0
-# endsnippet
-#
-# snippet shs "should_satisfy"
-# ${1:target}.should satisfy { |obj| $2 }
-# $0
-# endsnippet
-#
-# snippet sht "should_throw"
-# lambda { $1 }.should throw_symbol(:${2:symbol})
-# $0
 # endsnippet
 #
 # snippet stu "stub"
