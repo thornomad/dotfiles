@@ -76,3 +76,6 @@
 [submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/QFEnter"]
 	path = dotfiles/local/share/nvim/site/pack/thornomad/start/QFEnter
 	url = https://github.com/yssl/QFEnter
+[submodule "dotfiles/local/share/nvim/site/pack/thornomad/start/vim-dispatch"]
+	path = dotfiles/local/share/nvim/site/pack/thornomad/start/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch
