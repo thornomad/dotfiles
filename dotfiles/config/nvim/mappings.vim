@@ -13,10 +13,10 @@ nnoremap Y y$
 
 " use gn and gp to switch buffers: go right, go previous
 " remap gn and gp to <leader>gn/gp
-nnoremap <leader>gj gj
-nnoremap <leader>gk gk
-nnoremap <silent> gk :bnext<CR>
-nnoremap <silent> gj :bprev<CR>
+" nnoremap <leader>gj gj
+" nnoremap <leader>gk gk
+" nnoremap <silent> gk :bnext<CR>
+" nnoremap <silent> gj :bprev<CR>
 " nnoremap <leader>gp gp
 
 
@@ -30,8 +30,8 @@ nnoremap <C-H> <C-W><C-H>
 " since we don't use arrow keys anyway
 noremap <up>    2<C-W>+
 noremap <down>  2<C-W>-
-noremap <left>  3<C-W><
-noremap <right> 3<C-W>>
+noremap <left>  4<C-W><
+noremap <right> 4<C-W>>
 
 " Thanks to Steve Losh for this liberating tip - regex better when searching
 " See http://stevelosh.com/blog/2010/09/coming-home-to-vim
@@ -41,6 +41,10 @@ noremap <right> 3<C-W>>
 " turn off highlighting
 nnoremap <leader><Space> :noh<cr>
 
+nnoremap <leader>co :copen<CR>
+nnoremap <leader>cc :cclose<CR>
+nnoremap <leader>lo :lopen<CR>
+nnoremap <leader>lc :lclose<CR>
 
 " relearn to quit and save/quit without closing buffers
 " close buffer without losing the split (or try not to)
@@ -141,22 +145,29 @@ let g:gh_line_blame_map = '<leader>ggb'
 " DOES NOT WORK!
 " let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
-nnoremap <silent> <leader>gc :Gcommit %<CR>
-nnoremap <silent> <leader>gs :G<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gl :Gina log<CR>
-
-" nnoremap <leader>gco :Gina checkout<SPACE>
-
-nnoremap <leader>gp :Gina pull<CR>
-nnoremap <leader>gu :Gina push<CR>
-
-" TODO - have this close the file when buffer is chosen
-
-nnoremap <leader>gbr :Gina branch -a --opener=split<CR>
+nnoremap <silent> <leader>gc :Gcommit -v -q %<CR>
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gl :silent! Glog<CR>
+nnoremap <silent> <leader>gbl :Gblame<CR>
+nnoremap <silent> <leader>gbr :Git branch<SPACE>
+nnoremap <silent> <leader>gco :Git checkout<SPACE>
+" nnoremap <silent> <leader>gl :Gina log<CR>
+" nnoremap <leader>gps :Dispatch! git push<CR>
+" nnoremap <leader>gpl :Dispatch! git pull<CR>
 nnoremap <leader>gfhs :<C-u>Gina flow hotfix start --fetch<SPACE>
 nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish --notag --push<SPACE>
 nnoremap <leader>gffs :<C-u>Gina flow feature start --fetch<SPACE>
+" nnoremap <leader>gco :Gina checkout<SPACE>
+
+nnoremap <leader>gpl :Gina pull<CR>
+nnoremap <leader>gps :Gina push<CR>
+
+" TODO - have this close the file when buffer is chosen
+
+" nnoremap <leader>gbr :Gina branch -a --opener=split<CR>
+" nnoremap <leader>gfhs :<C-u>Gina flow hotfix start --fetch<SPACE>
+" nnoremap <leader>gfhf :<C-u>Gina flow hotfix finish --notag --push<SPACE>
+" nnoremap <leader>gffs :<C-u>Gina flow feature start --fetch<SPACE>
 " nnoremap <leader>gfff :<C-u>Gina flow feature finish<SPACE>
 
 
@@ -205,17 +216,17 @@ vnoremap <silent> <leader>frs :'<,'>S/start/end/g<CR>
 " EX MAPPINGS
 " --------------------------------------------------------------------------------
 command! -nargs=* Wrap set wrap linebreak nolist breakindent showbreak=->
-command Gstash execut "Gina stash -u"
-command Gpop execut "Gina stash pop"
+command! Gstash execut "Gina stash -u"
+command! Gpop execut "Gina stash pop"
 
 " close all buffers but the current one
-command BufOnly silent! execute "%bd|e#|bd#"
+command! BufOnly silent! execute "%bd|e#|bd#"
 
 " map upppercase commands I mistype to their lowercase counterparts
 command! -bar -bang Q quit<bang>
-command! -bar -bang W write<bang>
-command! -nargs=* T split | terminal <args>
-command! -nargs=* TV vsplit | terminal <args>
+" command! -bar -bang W write<bang> " vim-eunech should handle this
+" command! -nargs=* T split | terminal <args>
+" command! -nargs=* TV vsplit | terminal <args>
 ":command! -nargs=* T vsplit | vertical resize 100 | terminal <args>
 " :command! -bar -bang X exit<bang>
 

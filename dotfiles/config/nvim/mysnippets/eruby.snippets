@@ -1,0 +1,39 @@
+snippet % "<% ... %>"
+<% $0 %>
+endsnippet
+
+snippet = "<%= ... %>"
+<%= $0 %>
+endsnippet
+
+snippet cap "capture do block"
+<% ${1:content} = capture do %>
+	$0
+<% end %>
+endsnippet
+
+snippet eab "{{each}}{{/each}"
+{{#each ${1:items}}}
+  $0
+{{/each}}
+endsnippet
+
+snippet if "{{if}}{{/if}"
+{{#if ${1:is_true}}}
+  $0
+{{/if}}
+endsnippet
+
+snippet ife "{{if}} ... {{else}} ... {{/if}"
+{{#if ${1:is_true}}}
+  $1
+{{else}}
+  $0
+{{/if}}
+endsnippet
+
+snippet unless "{{unless}}{{/unless}"
+{{#unless ${1:is_true}}}
+  $0
+{{/unless}}
+endsnippet

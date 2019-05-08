@@ -15,6 +15,10 @@ if (${1:true}) {
 }
 endsnippet
 
+snippet c "const foo = ...;"
+const $1 = $0
+endsnippet
+
 snippet ca "const { ... } = ...;"
 const { ${1:arg} } = ${2:val};
 $0
@@ -41,8 +45,8 @@ function ${1:name}() {
 }
 endsnippet
 
-snippet "(\S+)\.map" ".map(<item> => [...] );" r
-`!p snip.rv=match.group(1)`.map(${1:`!p
+snippet "(\S+)\.all" ".every(<item> => [...] );" r
+`!p snip.rv=match.group(1)`.every(${1:`!p
 element_name = match.group(1).lstrip('$@')
 ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
 try:
@@ -53,8 +57,8 @@ except:
 `} => $0);
 endsnippet
 
-snippet "(\S+)\.mapb" ".map((<item>) => { [...] });" r
-`!p snip.rv=match.group(1)`.map((${1:`!p
+snippet "(\S+)\.any" ".some(<item> => [...] );" r
+`!p snip.rv=match.group(1)`.some(${1:`!p
 element_name = match.group(1).lstrip('$@')
 ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
 try:
@@ -62,9 +66,7 @@ try:
 	snip.rv = wmatch.group(1).lower()
 except:
 	snip.rv = 'element'
-`}) => {
-	$0
-});
+`} => $0);
 endsnippet
 
 snippet "(\S+)\.ea" ".forEach(<item> => [...] );" r
@@ -93,6 +95,17 @@ except:
 });
 endsnippet
 
+snippet "(\S+)\.ev" ".every(<item> => [...] );" r
+`!p snip.rv=match.group(1)`.every(${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`} => $0);
+endsnippet
 
 snippet "(\S+)\.fil" ".filter(<item> => [...] );" r
 `!p snip.rv=match.group(1)`.filter(${1:`!p
@@ -118,4 +131,56 @@ except:
 `}) => {
 	$0
 });
+endsnippet
+
+snippet "(\S+)\.map" ".map(<item> => [...] );" r
+`!p snip.rv=match.group(1)`.map(${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`} => $0);
+endsnippet
+
+snippet "(\S+)\.mapb" ".map((<item>) => { [...] });" r
+`!p snip.rv=match.group(1)`.map((${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`}) => {
+	$0
+});
+endsnippet
+
+snippet "(\S+)\.mapf" ".map(function map(<item>) { [...] });" r
+`!p snip.rv=match.group(1)`.map(function map(${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`}) {
+	$0
+});
+endsnippet
+
+snippet "(\S+)\.some" ".some(<item> => [...] );" r
+`!p snip.rv=match.group(1)`.some(${1:`!p
+element_name = match.group(1).lstrip('$@')
+ematch = re.search("([A-Za-z][A-Za-z0-9_]+?)s?[^A-Za-z0-9_]*?$", element_name)
+try:
+	wmatch = re.search("([A-Za-z][A-Za-z0-9_]+)$", ematch.group(1))
+	snip.rv = wmatch.group(1).lower()
+except:
+	snip.rv = 'element'
+`} => $0);
 endsnippet
