@@ -42,12 +42,16 @@ function git.pull
     echo "You have untracked files, stage or stash them"
   else
     set GIT_BRANCH (git rev-parse --abbrev-ref HEAD)
+    # see if there is an upstream branch
+    set UPSTREAM (git for-each-ref --format='%(upstream:short)' (git symbolic-ref -q HEAD))
     git checkout master
     git pull
     git checkout develop
     git pull
     git checkout $GIT_BRANCH
-    git pull
+    if test -n "$UPSTREAM"
+      git pull
+    end
     echo "All done!"
   end
 end
