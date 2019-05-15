@@ -1,0 +1,34 @@
+snippet :js ":javascript ..."
+:javascript
+  $(document).ready(function() {
+		$0
+  });
+endsnippet
+snippet check "checkbox"
+.checkbox
+	%label
+		%input{ type: 'checkbox', name: '${1:input[name]}' }
+		$0
+endsnippet
+
+snippet a "%a.btn"
+%a{ href: "$1" }
+  $0
+endsnippet
+
+snippet ab "%a.btn"
+%a.btn.btn-outline${1:.btn-xs}{ href: "${2:#}" }
+  $0
+endsnippet
+
+snippet far "%i.far"
+%i.far.fa-fw.fa-$0
+endsnippet
+
+snippet fas "%i.fas"
+%i.fas.fa-fw.fa-$0
+endsnippet
+
+snippet fal "%i.fal"
+%i.fal.fa-fw.fa-$0
+endsnippet

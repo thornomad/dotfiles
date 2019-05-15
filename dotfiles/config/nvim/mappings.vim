@@ -145,12 +145,12 @@ let g:gh_line_blame_map = '<leader>ggb'
 " DOES NOT WORK!
 " let g:gh_open_command = 'fn() { echo "$@" | pbcopy; }; fn '
 
-nnoremap <silent> <leader>gc :Gcommit -v -q %<CR>
+nnoremap <silent> <leader>gci :Gcommit -v -q %<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gl :silent! Glog<CR>
 nnoremap <silent> <leader>gbl :Gblame<CR>
-nnoremap <silent> <leader>gbr :Git branch<SPACE>
-nnoremap <silent> <leader>gco :Git checkout<SPACE>
+nnoremap <leader>gbr :Git branch<SPACE>
+nnoremap <leader>gco :Git checkout<SPACE>
 " nnoremap <silent> <leader>gl :Gina log<CR>
 " nnoremap <leader>gps :Dispatch! git push<CR>
 " nnoremap <leader>gpl :Dispatch! git pull<CR>
